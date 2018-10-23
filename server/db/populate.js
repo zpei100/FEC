@@ -7,8 +7,7 @@ const data = {
   type: ['ENTIRE CONDOMINIUM', 'ENTIRE APARTMENT', 'ENTIRE VILLA'],
   description: ['some description'],
   tag: ['PLUS', 'REGULAR'],
-  favorite: [true, false],
-  img: [dummyImageUrl]
+  favorite: [true, false]
 };
 
 const random = function(len) {
@@ -30,11 +29,13 @@ for (var i = 0; i < size; i++) {
 
   var related = [];
   var position = 0;
-  
+
   while (position < size) {
-    position += random(Math.floor(size/5));
-    related.push(position)
+    position += random(Math.floor(size / 5));
+    related.push(position);
   }
+
+  var url = `https://picsum.photos/200/300/?image=${random(999)}`;
 
   new Room({
     ...roomData,
@@ -43,6 +44,7 @@ for (var i = 0; i < size; i++) {
     price: random(500),
     rating: random(6),
     reviews: random(200),
-    related
+    related,
+    img: url
   }).save();
 }
