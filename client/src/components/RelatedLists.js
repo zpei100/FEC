@@ -30,11 +30,13 @@ class RelatedLists extends Component {
       <Slider className="slider container" {...setting}>
         {dummy.map(img => (
           <div className="card">
-            <img className="card-img-top w-100 h-100" src={img}/>
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">SOME RANDOM MESSAGE ABOUT HOUSES</p>
-              </div>
+            <img className="room-image m-auto" src={img}/>
+            <div className="card-body">
+              <div className="card-title">Card Title</div>
+              <p className="card-text">
+                Here is some random text about your room
+              </p>
+            </div> 
           </div>
         ))}
       </Slider>
