@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import 'slick-carousel';
-import Slider from 'react-slick';
-import '../style.css';
+import Rating from './rating';
+import $ from 'jquery';
+
+import '../lib/style.css';
 
 var dummy = [
   `https://picsum.photos/200/300/?image=499`,
@@ -20,26 +21,64 @@ class RelatedLists extends Component {
     super(props);
   }
 
+  moveLeft() {
+    var $slides = $('.slides');
+    console.log($slides);
+    $slides.animate({ 'margin-left': '-=349.32px' }, 1000);
+  }
+
+  moveRight() {
+    var $slides = $('.slides');
+    console.log($slides);
+    $slides.animate({ 'margin-left': '+=349.32px' }, 1000);
+  }
+
   render() {
-    var setting = {
-      slidesToShow: 3,
-      slidesToScroll: 1
+    var length = dummy.length * 349.32;
+
+    var slideStyle = {
+      width: `${length}px`,
+      height: '339px',
+      display: 'block'
     };
 
     return (
-      <Slider className="slider container" {...setting}>
-        {dummy.map(img => (
-          <div className="card">
-            <img className="room-image m-auto" src={img}/>
-            <div className="card-body">
-              <div className="card-title">Card Title</div>
-              <p className="card-text">
-                Here is some random text about your room
-              </p>
-            </div> 
+      <div>
+        <button
+          onClick={this.moveLeft}
+          className="btn btn-primary float-left"
+          id="prev"
+        >
+          Prev
+        </button>
+        <button
+          onClick={this.moveRight}
+          className="btn btn-primary float-right"
+          id="prev"
+        >
+          Next
+        </button>
+        <div className="slider">
+          <div style={slideStyle} className="slides">
+            {dummy.map(img => (
+              <div className="card border-0 slide">
+                <img className="room-image m-auto" src={img} />
+                <div className="card-body">
+                  <div className="card-title room-type">ENTIRE APARTMENT</div>
+                  <div className="card-text room-description">
+                    Luxury waterfont & amazing views
+                  </div>
+                  <div className="card-text room-review">$300 per night</div>
+                  <div>
+                    <Rating rating={3.37} roomId={5} />
+                    <span>330</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </Slider>
+        </div>
+      </div>
     );
   }
 }
