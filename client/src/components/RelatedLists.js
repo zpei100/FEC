@@ -1,18 +1,34 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
+import axios from 'axios';
 
 import RoomCard from './RoomCard';
 import Arrow from './Arrow';
 
-var dummy = [
-  `https://picsum.photos/333/222/?image=499`,
-  `https://picsum.photos/333/222/?image=599`,
-  `https://picsum.photos/333/222/?image=699`,
-  `https://picsum.photos/333/222/?image=439`,
-  `https://picsum.photos/333/222/?image=199`
-];
-
 class RelatedLists extends Component {
+  constructor() {
+    super();
+    this.state = {
+      rooms: []
+    }
+  }
+
+  componentDidMount() {
+    var rooms = [];
+    var count = 0;
+    this.props.related.forEach(id => {
+      console.log('id: ', id)
+      axios.get(`http://localhost:4000/room/${id}`).then(({data}) => {
+        count ++;
+        rooms.push(data[0]);
+        console.log(data[0])
+        if (count === this.props.related.length) {
+          this.setState({rooms})
+        }
+      })
+    })
+  }
+
   render() {
     const settings = {
       infinite: false,
@@ -40,15 +56,16 @@ class RelatedLists extends Component {
       nextArrow: <Arrow direction="+" />,
       prevArrow: <Arrow direction="-" />,
     };
-
     return (
+      this.state.rooms.length > 0 ? 
       <div className="container">
         <div className="row justify-content-center">
-        <Slider className="col-sm-11 p-0 m-auto" {...settings}>
-          {dummy.map((img, idx) => <RoomCard img={img} roomId={idx} rating={3.37} key={idx} />)}
-        </Slider>
+          <Slider className="col-sm-11 p-0 m-auto" {...settings}>
+            {this.state.rooms.map(room => <RoomCard key={room.id} {...room} />)}
+          </Slider>
         </div>
       </div>
+      : <div> Temporary Loading Screen , will be gone in production </div>
     );
   }
 }

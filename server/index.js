@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 const { Room } = require('./db/schema');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 app.use(bodyParser());
+app.use(cors());
 
 app.get('/room/:id', function(req, res) {
   const { id } = req.params;

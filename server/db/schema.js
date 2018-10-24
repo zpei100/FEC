@@ -1,13 +1,13 @@
 const db = require('./db.js');
 const mongoose = require('mongoose');
 
-const roomSchema  = new mongoose.Schema({
+const roomSchema = new mongoose.Schema({
   id: {
     type: Number,
     unique: true
   },
   type: String,
-  descriptin: String,
+  description: String,
   beds: Number,
   tag: String,
   favorite: Boolean,
@@ -18,6 +18,6 @@ const roomSchema  = new mongoose.Schema({
   related: [Number]
 });
 
-const Room = mongoose.model('Person', roomSchema);
+const Room = mongoose.model('Rooms', roomSchema);
 
-module.exports = { Room } 
+module.exports = { Room };

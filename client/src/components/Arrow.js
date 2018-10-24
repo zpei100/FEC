@@ -9,7 +9,7 @@ export default class Arrow extends Component {
       height: `20px`,
       width: `20px`,
       height: `24px`,
-      transform: `translatey(-200%)`,
+      transform: `translatey(-250%)`,
       width: `24px`,
       fill: `rgb(118, 118, 118)`,
     };

@@ -5,7 +5,16 @@ const dummyImageUrl =
 
 const data = {
   type: ['ENTIRE CONDOMINIUM', 'ENTIRE APARTMENT', 'ENTIRE VILLA'],
-  description: ['some description'],
+  description: [
+    'City Home in Historic Rocks',
+    'Luxury waterfront & amazing views',
+    'In The Heart of  Sydney SBD! WIFI',
+    'Charming Urban Sanctuary in a Heritage Terrace',
+    'Harbour Views Massive apartment',
+    '2BR beachview nr Icebergs w parking',
+    '143 fantastic apartment 10 minutes walk to city.',
+    'Harbour Front Accommodation'
+  ],
   tag: ['PLUS', 'REGULAR'],
   favorite: [true, false]
 };
@@ -31,16 +40,16 @@ for (var i = 0; i < size; i++) {
   var position = 0;
 
   while (position < size) {
-    position += random(Math.floor(size / 5));
-    related.push(position);
+    position += random(Math.floor(size / 5)) + 1;
+    if (position <= size) related.push(position);
   }
 
-  var url = `https://picsum.photos/200/300/?image=${random(999)}`;
+  var url = `https://picsum.photos/333/222/?image=${random(999)}`;
 
   new Room({
     ...roomData,
     id: i,
-    beds: random(6),
+    beds: random(4) + 2,
     price: random(500),
     rating: random(6),
     reviews: random(200),
