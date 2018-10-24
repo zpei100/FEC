@@ -11,8 +11,8 @@ export default class RoomCard extends Component {
     }
 
     return (
-      <div className="float-left p-1">
-        <img className="m-auto" style={imgStyle} src={this.props.img} />
+      <div className="p-1">
+        <img className="m-auto w-100 h-auto" style={imgStyle} src={this.props.img} />
         <div className="mt-2 p-0">
           <div className="card-title mb-0 room-type d-flex ">
             <span className="align-self-center small">ENTIRE APARTMENT</span>

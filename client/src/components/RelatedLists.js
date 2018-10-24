@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 
 import RoomCard from './RoomCard';
-import NextArrow from './Arrow';
+import Arrow from './Arrow';
 
 var dummy = [
   `https://picsum.photos/333/222/?image=499`,
@@ -37,14 +37,14 @@ class RelatedLists extends Component {
           }
         }
       ],
-      nextArrow: <NextArrow />
+      nextArrow: <Arrow direction="+" />,
+      prevArrow: <Arrow direction="-" />,
     };
 
     return (
       <div className="container">
         <div className="row justify-content-center">
-        <button></button>
-        <Slider className="col-sm-11 p-0" {...settings}>
+        <Slider className="col-sm-11 p-0 m-auto" {...settings}>
           {dummy.map((img, idx) => <RoomCard img={img} roomId={idx} rating={3.37} key={idx} />)}
         </Slider>
         </div>

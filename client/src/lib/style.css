@@ -3,52 +3,10 @@
   src: url('ROADWAY_.ttf');
 }
 
-.slider {
-  width: 1047px;
-  height: 316px;
-  overflow: hidden;
-}
-
-.slide {
-  float: left;
-  position: relative;
-}
-
-.card {
-  width: 349px;
-  height: 316px;
-}
-
-.slick-list {
-  width: 1048px;
-}
-
-.room-image {
-  width: 333.33px;
-  height: 222.22px;
-}
-
-.room-type {
-  font-size: 12px;
-  font-family: DODGE;
-  font-weight: 800;
-}
-
-.room-description {
-  font-weight: 800;
-}
-
-.room-price {
-  font-size: 14px;
-}
-
-.card-body {
-  height: 96px;
-}
-
 .star-o {
   color: gray;
   position: relative;
+  margin: -2px;
 }
 
 .halfstar {
