@@ -4,15 +4,28 @@
   margin: -2px;
 }
 
-.halfstar {
+.half-yellow-star {
   position: absolute;
   left: 0;
   width: 7px;
-  color: gold;
+  color: teal;
+  overflow: hidden;
+}
+
+.half-purple-star {
+  position: absolute;
+  left: 0;
+  width: 7px;
+  color: rgb(166, 29, 85);
   overflow: hidden;
 }
 
 .yellow-star {
   position: relative;
-  color: gold;
+  color: teal;
+}
+
+.purple-star {
+  position: relative;
+  color: rgb(166, 29, 85);
 }

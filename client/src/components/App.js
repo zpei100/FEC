@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import RelatedLists from './RelatedLists';
+import RelatedLists from './carousel/RelatedLists';
 
 class App extends Component {
   constructor() {

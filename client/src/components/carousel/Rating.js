@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import '../lib/style.css';
+import '../../lib/style.css';
 
 class Rating extends Component {
-
   componentDidMount() {
-  
+    var color = this.props.color;
+
     var rating = this.props.rating;
     var floor = Math.floor(rating);
     var ceil = Math.ceil(rating);
@@ -23,12 +23,12 @@ class Rating extends Component {
     var $stars = $(`#${this.props.roomId}`)[0].children;
 
     for (var i = 0; i < rating - 1; i++) {
-      $($stars[i]).addClass('yellow-star');
+      $($stars[i]).addClass(`${color}-star`);
     }
 
     if (rating !== Math.floor(rating))
       $($stars[Math.floor(rating)]).append(
-        $(`<span class="halfstar">&#x2605;</span>`)
+        $(`<span class="half-${color}-star">&#x2605;</span>`)
       );
   }
 

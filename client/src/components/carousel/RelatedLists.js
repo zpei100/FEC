@@ -9,19 +9,18 @@ class RelatedLists extends Component {
   constructor() {
     super();
     this.state = {
-      rooms: []
+      rooms: [],
     }
   }
 
+  //need to fix
   componentDidMount() {
     var rooms = [];
     var count = 0;
     this.props.related.forEach(id => {
-      console.log('id: ', id)
       axios.get(`http://localhost:4000/room/${id}`).then(({data}) => {
         count ++;
         rooms.push(data[0]);
-        console.log(data[0])
         if (count === this.props.related.length) {
           this.setState({rooms})
         }
