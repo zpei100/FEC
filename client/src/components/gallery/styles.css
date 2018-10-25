@@ -59,6 +59,16 @@
   cursor: pointer;
 }
 
+.jump {
+  transform: translateY(-20px);
+  transition: opacity 0.2s ease-in, transform 0.35s;
+}
+
+.fall {
+  transform: translateY(+20px);
+  transition: opacity 0.2s ease-in, transform 0.35s;
+}
+
 .gallery-div {
   overflow: hidden;
   background-color: #262626;

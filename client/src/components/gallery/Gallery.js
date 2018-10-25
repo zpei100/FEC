@@ -7,7 +7,7 @@ import './styles.css';
 
 class Gallery extends Component {
   componentDidMount() {
-    $('.gallery img').hover(
+   $('.gallery img').hover(
       function(e) {
         const others = $(e.target)
           .parent()
@@ -15,7 +15,8 @@ class Gallery extends Component {
           .children('img')
           .not(e.target);
         $(others).stop();
-        $(others).fadeTo(400, 0.6);
+        $(others).css({opacity: 0.7, transition: "ease-in, 1s"})
+        // $(others).fadeTo(600, 0.7, 'swing') alternative
       },
       function(e) {
         const others = $(e.target)
@@ -24,9 +25,24 @@ class Gallery extends Component {
           .children('img')
           .not(e.target);
         $(others).stop();
-        $(others).fadeTo(400, 1);
+        $(others).css({opacity: 1, transition: "ease-in, 1s"})
+        // $(others).fadeTo(400, 1, 'swing');
       }
     );
+  
+    this.floatButtonWhenEntering($('.img3'))
+    this.floatButtonWhenEntering($('.button-bottom'))
+  }
+
+  floatButtonWhenEntering(ele) {
+    ele.hover(function(e) {
+      $('.button-bottom').css({transform: "translateY(-12px)",
+        transition: "opacity 0.2s ease-in, transform 0.35s"})
+    }, function(e) {
+      $('.button-bottom ').css({transform: "translateY(0)",
+      transition: "opacity 0.2s ease-in, transform 0.35s"})
+  }, function(e) {
+    })
   }
 
   render() {
@@ -53,7 +69,7 @@ class Gallery extends Component {
         <div className="thumbnail gallery-div">
           <GalleryImage cls="thumbnail-image" img={this.props.thumbNail} />
         </div>
-        
+
         {this.props.imgs.slice(0, 4).map((img, idx) => (
           <div className={`img${idx} gallery-div`}>
             <GalleryImage img={img} />
