@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
-import { ImageCover } from './styles';
+import styled from 'styled-components';
+import $ from 'jquery';
+
+import GalleryImage from './GalleryImage';
 import './styles.css';
 
 class Gallery extends Component {
+
+  componentDidMount() {
+    $('.gallery img').hover(function(e) {
+      const others = ($(e.target).parent().siblings().children().not(e.target))
+      $(others).stop();
+      $(others).fadeTo(600, 0.6);
+    }, function(e) {
+      const others = ($(e.target).parent().siblings().children().not(e.target))
+      $(others).stop();
+      $(others).fadeTo(600, 1)
+    })
+  }
+
   render() {
     return (
       <div className="gallery">
-        <div className="thumbnail"><img  src={this.props.thumbNail}/></div>
-        <div className="img1"><img  src={this.props.imgs[0]}/></div>
-        <div className="img2"><img  src={this.props.imgs[1]}/></div>
-        <div className="img3"><img  src={this.props.imgs[2]}/></div>
-        <div className="img4"><img  src={this.props.imgs[3]}/></div>
+        <div className="thumbnail"><GalleryImage cls="thumbnail-image" img={this.props.thumbNail}/></div>
+        {this.props.imgs.slice(0,4).map((img, idx) => <div className={`img${idx}`}><GalleryImage img={img} /></div>)}
+        
       </div> 
     )
   }

@@ -4,8 +4,8 @@
   grid-template-columns: 2fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    'thumbnail img1 img3'
-    'thumbnail img2 img4';
+    'thumbnail img0 img2'
+    'thumbnail img1 img3';
 }
 
 @media (max-width: 1200px) {
@@ -13,15 +13,15 @@
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      'thumbnail img1'
-      'thumbnail img2';
+      'thumbnail img0'
+      'thumbnail img1';
   }
 
-  .img3 {
+  .img2 {
     display: none;
   }
 
-  .img4 {
+  .img3 {
     display: none;
   }
 }
@@ -32,7 +32,7 @@
     grid-template-rows: 1fr;
   }
 
-  img:not(.thumbnail) {
+  img:not(.thumbnail-image) {
     display: none;
   }
 }
@@ -45,10 +45,15 @@
 
 .gallery div {
   overflow: hidden;
+  background-color: #262626;
 }
 
 .gallery img:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+.img0 {
+  grid-area: img0;
 }
 
 .img1 {
@@ -61,10 +66,6 @@
 
 .img3 {
   grid-area: img3;
-}
-
-.img4 {
-  grid-area: img4;
 }
 
 .thumbnail {

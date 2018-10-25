@@ -1,0 +1,5 @@
+:not(.gallery .img:hover) {
+  filter: brightness(50%);
+}
+
+/*# sourceMappingURL=test.css.map */
