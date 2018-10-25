@@ -58,7 +58,7 @@ class RelatedLists extends Component {
     return (
       this.state.rooms.length > 0 ? 
       <div className="container">
-        <div className="row justify-content-center">
+        <div className="row justify-content-center col-12 p-0 m-0">
           <Slider className="col-sm-11 p-0 m-auto" {...settings}>
             {this.state.rooms.map(room => <RoomCard key={room.id} {...room} />)}
           </Slider>

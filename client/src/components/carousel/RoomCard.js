@@ -14,7 +14,8 @@ export default class RoomCard extends Component {
       price,
       rating,
       reviews,
-      img
+      thumbNail,
+      imgs 
     } = this.props;
     
 
@@ -31,7 +32,7 @@ export default class RoomCard extends Component {
 
 
 
-          <img className="m-auto w-100 h-auto" src={img} />
+          <img className="m-auto w-100 h-auto" src={thumbNail} />
         </div>
 
         <div className="mt-2 p-0">

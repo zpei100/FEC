@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import RelatedLists from './carousel/RelatedLists';
+import Gallery from './gallery/Gallery';
 
 class App extends Component {
   constructor() {
@@ -10,6 +11,8 @@ class App extends Component {
     }
   }
 
+  //need current User
+
   componentDidMount() {
     axios.get('http://localhost:4000/room/15').then(({ data }) => {
       this.setState({
@@ -18,8 +21,24 @@ class App extends Component {
     });
   }
 
+  //need to implement
+  // saveToFavorite (id) {
+  //   this.state.user.favorites.push(id)
+  // }
+
   render() {
-    return this.state.room.related? <RelatedLists related={this.state.room.related} /> : <p>Waiting for data</p>;
+  
+    var showCarousel = false;
+
+    return (
+        <div>
+          {this.state.room.thumbNail ? <Gallery thumbNail={this.state.room.thumbNail} imgs={this.state.room.imgs}/> : ""}
+          {this.state.room.related && showCarousel ? <RelatedLists related={this.state.room.related} /> : ""}
+        </div>
+
+
+      
+    )
   }
 }
 

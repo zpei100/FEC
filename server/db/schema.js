@@ -14,7 +14,8 @@ const roomSchema = new mongoose.Schema({
   price: Number,
   rating: Number,
   reviews: Number,
-  img: String,
+  thumbNail: String,
+  imgs: [String],
   related: [Number]
 });
 

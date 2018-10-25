@@ -38,6 +38,7 @@ for (var i = 0; i < size; i++) {
 
   var related = [];
   var position = 0;
+  var imgs = [];
 
   while (position < size) {
     position += random(Math.floor(size / 5)) + 1;
@@ -45,6 +46,10 @@ for (var i = 0; i < size; i++) {
   }
 
   var url = `https://picsum.photos/333/222/?image=${random(999)}`;
+
+  for (var k = 0; k < random(10) + 10; k++) {
+    imgs.push(`https://picsum.photos/333/222/?image=${random(999)}`);
+  }
 
   new Room({
     ...roomData,
@@ -54,6 +59,7 @@ for (var i = 0; i < size; i++) {
     rating: random(6),
     reviews: random(200),
     related,
-    img: url
+    thumbNail: url,
+    imgs
   }).save();
 }
