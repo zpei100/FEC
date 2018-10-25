@@ -32,6 +32,7 @@ class App extends Component {
 
     return (
         <div>
+          <div style={{height: '80px'}}></div>
           {this.state.room.thumbNail ? <Gallery thumbNail={this.state.room.thumbNail} imgs={this.state.room.imgs}/> : ""}
           {this.state.room.related && showCarousel ? <RelatedLists related={this.state.room.related} /> : ""}
         </div>

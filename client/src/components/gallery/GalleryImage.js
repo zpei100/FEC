@@ -4,7 +4,7 @@ import $ from 'jquery';
 class GalleryImage extends Component {
 
   render() {
-    return <img className={this.props.cls} src={this.props.img}/>
+    return <img className={`${this.props.cls} border border-dark`} src={this.props.img}/>
   }
 }
 export default GalleryImage;
