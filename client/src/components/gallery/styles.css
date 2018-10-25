@@ -5,8 +5,8 @@
   grid-template-columns: 2fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    'thumbnail img0 img2'
-    'thumbnail img1 img3';
+    'img0 img1 img3'
+    'img0 img2 img4';
 }
 
 @media (max-width: 1200px) {
@@ -14,15 +14,15 @@
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      'thumbnail img0'
-      'thumbnail img1';
-  }
-
-  .img2 {
-    display: none;
+      'img0 img1'
+      'img0 img2';
   }
 
   .img3 {
+    display: none;
+  }
+
+  .img4 {
     display: none;
   }
 }
@@ -33,7 +33,7 @@
     grid-template-rows: 1fr;
   }
 
-  img:not(.thumbnail-image) {
+  img:not(.img0) {
     display: none;
   }
 }
@@ -94,8 +94,8 @@
   grid-area: img3;
 }
 
-.thumbnail {
-  grid-area: thumbnail;
+.img4 {
+  grid-area: img4;
 }
 
 .button-text {

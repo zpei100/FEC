@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
 
 class GalleryImage extends Component {
 
   render() {
-    return <img className={`${this.props.cls} border border-dark`} src={this.props.img}/>
+    return <img className="border border-dark" src={this.props.img} alt=""/>
   }
 }
 export default GalleryImage;

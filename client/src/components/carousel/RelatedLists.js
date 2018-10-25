@@ -55,6 +55,7 @@ class RelatedLists extends Component {
       nextArrow: <Arrow direction="+" />,
       prevArrow: <Arrow direction="-" />,
     };
+    
     return (
       this.state.rooms.length > 0 ? 
       <div className="container">

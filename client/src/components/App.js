@@ -14,7 +14,7 @@ class App extends Component {
   //need current User
 
   componentDidMount() {
-    axios.get('http://localhost:4000/room/15').then(({ data }) => {
+    axios.get('http://localhost:4000/room/19').then(({ data }) => {
       this.setState({
         room: data[0]
       });
@@ -28,17 +28,15 @@ class App extends Component {
 
   render() {
   
-    var showCarousel = false;
+    var showCarousel = true;
 
     return (
         <div>
           <div style={{height: '80px'}}></div>
-          {this.state.room.thumbNail ? <Gallery thumbNail={this.state.room.thumbNail} imgs={this.state.room.imgs}/> : ""}
+          {this.state.room.imgs ? <Gallery imgs={this.state.room.imgs}/> : ""}
+          <div style={{height: '300px'}}></div>
           {this.state.room.related && showCarousel ? <RelatedLists related={this.state.room.related} /> : ""}
         </div>
-
-
-      
     )
   }
 }

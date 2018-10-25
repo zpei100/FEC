@@ -45,8 +45,6 @@ for (var i = 0; i < size; i++) {
     if (position <= size) related.push(position);
   }
 
-  var url = `https://picsum.photos/333/222/?image=${random(999)}`;
-
   for (var k = 0; k < random(10) + 10; k++) {
     imgs.push(`https://picsum.photos/333/222/?image=${random(999)}`);
   }
@@ -59,7 +57,6 @@ for (var i = 0; i < size; i++) {
     rating: random(6),
     reviews: random(200),
     related,
-    thumbNail: url,
     imgs
   }).save();
 }

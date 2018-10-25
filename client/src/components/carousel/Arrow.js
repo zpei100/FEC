@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 
 export default class Arrow extends Component {
   render() {
-    const {onClick, direction, className } = this.props;
+    const {onClick, direction } = this.props;
 
     const arrowStyle = {
       display: `block`,
-      height: `20px`,
-      width: `20px`,
       height: `24px`,
-      transform: `translatey(-250%)`,
       width: `24px`,
+      transform: `translatey(-250%)`,
       fill: `rgb(118, 118, 118)`,
     };
-
 
     return (
       onClick ? 
@@ -26,7 +23,6 @@ export default class Arrow extends Component {
         className={`slick-${direction === '+' ? 'next' : 'prev'} float-${direction === '+' ? 'right' : 'left'}`}
         onClick={(props) => {
           onClick(props);
-          console.log('I JUST GOT CLICKED!!!')
         }}
       >
         <path

@@ -30,7 +30,7 @@ class Gallery extends Component {
       }
     );
   
-    this.floatButtonWhenEntering($('.img3'))
+    this.floatButtonWhenEntering($('.img4'))
     this.floatButtonWhenEntering($('.button-bottom'))
   }
 
@@ -65,13 +65,8 @@ class Gallery extends Component {
           <button className="btn btn-lg py-1 button-text btn-light">View Photos</button>
         </div>
 
-
-        <div className="thumbnail gallery-div">
-          <GalleryImage cls="thumbnail-image" img={this.props.thumbNail} />
-        </div>
-
-        {this.props.imgs.slice(0, 4).map((img, idx) => (
-          <div className={`img${idx} gallery-div`}>
+        {this.props.imgs.slice(0, 5).map((img, idx) => (
+          <div key={idx} className={`img${idx} gallery-div`}>
             <GalleryImage img={img} />
           </div>
         ))}
