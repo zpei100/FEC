@@ -14,7 +14,7 @@ class App extends Component {
   //need current User
 
   componentDidMount() {
-    axios.get('http://localhost:4000/room/19').then(({ data }) => {
+    axios.get('http://localhost:4000/room/23').then(({ data }) => {
       this.setState({
         room: data[0]
       });

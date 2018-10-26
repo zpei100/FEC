@@ -1,8 +1,0 @@
-.gallery {
-  .img:hover {
-    :not(&) {
-      filter: brightness(50%)
-    }
-  }
-}
- 

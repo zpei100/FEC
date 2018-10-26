@@ -33,14 +33,14 @@
     grid-template-rows: 1fr;
   }
 
-  img:not(.img0) {
+  .gallery-div img:not(.img0) {
     display: none;
   }
 }
 
 .gallery .button {
   position: absolute;
-  z-index: 1
+  z-index: 1;
 }
 
 .button-top {
@@ -101,4 +101,49 @@
 .button-text {
   font-size: 15px;
   font-weight: 200;
+}
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
+
+.ReactModal__Overlay {
+  position: fixed;
+  z-index: 2;
+}
+
+.ReactModal__Content {
+  background-color: black;
+  z-index: 3;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: grid;
+  grid-template-rows: 86px minmax(auto, 414px);
+  grid-template-areas:
+    'exit'
+    'carousel'
+    'prompt';
+}
+
+.exit {
+  grid-area: exit;
+}
+
+.exit-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: black;
+  cursor: pointer;
+}
+
+.carousel-image {
+  position: relative;
+  height: 75%;
+}
+
+.prompt {
 }
