@@ -11,7 +11,7 @@ class Gallery extends Component {
     super();
     this.state = {
       showModal: true,
-      activeImg: null 
+      activeImg: 0 
     };
   }
 
@@ -78,12 +78,12 @@ class Gallery extends Component {
         <div className="button-top button mx-4 my-4 d-flex">
           <button className="btn btn-lg mx-3 py-1 button-text d-flex btn-light">
             <div className="mr-2 align-self-center">{share}</div>
-            <div style={{ lineHeight: '25px' }}>Share</div>
+            <div className="hide-text" style={{ lineHeight: '25px' }}>Share</div>
           </button>
 
           <button className="btn btn-lg py-1 button-text d-flex btn-light">
             <div className="mr-2 align-self-center">{save}</div>
-            <div style={{ lineHeight: '25px' }}>Save</div>
+            <div className="hide-text" style={{ lineHeight: '25px' }}>Save</div>
           </button>
         </div>
 
@@ -101,6 +101,8 @@ class Gallery extends Component {
             <GalleryImage idx={`img${idx}`} img={img} />
           </div>
         ))}
+
+        
       </div>
     );
   }

@@ -36,6 +36,10 @@
   .gallery-div img:not(.img0) {
     display: none;
   }
+
+  .hide-text {
+    display: none;
+  }
 }
 
 .gallery .button {
@@ -113,7 +117,7 @@
 }
 
 .ReactModal__Content {
-  background-color: black;
+  background-color: white;
   z-index: 3;
   position: absolute;
   top: 0px;
@@ -121,7 +125,7 @@
   right: 0px;
   bottom: 0px;
   display: grid;
-  grid-template-rows: 86px minmax(auto, 414px);
+  grid-template-rows: 86px minmax(auto, 414px) 120px;
   grid-template-areas:
     'exit'
     'carousel'
@@ -140,10 +144,13 @@
   cursor: pointer;
 }
 
-.carousel-image {
-  position: relative;
-  height: 75%;
+.prompt {
+  grid-area: prompt;
 }
 
-.prompt {
-}
+.carousel {
+  grid-area: carousel;
+  max-width: 95vw;
+  min-width: 0;
+  min-height: 0;
+} 
