@@ -1,36 +1,12 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
-import Slider from 'react-slick';
-import $ from 'jquery';
 
 import { exit } from '../../lib/svg';
-import Arrow from '../carousel/Arrow';
-import CarouselImage from './CarouselImage';
+import { next, prev } from '../../lib/svg';
 
 class CarouselModal extends Component {
-  componentDidMount() {
-    console.log($('.carousel'));
-  }
-
   render() {
     const { handleCloseModal, showModal, imgs, activeImg } = this.props;
-    const settings_one = {
-      infinite: true,
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      initialSlide: activeImg,
-      className: 'testing',
-      useCSS: false,
-      nextArrow: <Arrow direction="+" />,
-      prevArrow: <Arrow direction="-" />
-    };
-
-    const settings_two = {
-      infinite: true,
-      slidesToScroll: 1,
-      slidesToShow: 5,
-      initialSlide: activeImg
-    }
 
     return (
       <ReactModal isOpen={this.props.showModal} className="Modal">
@@ -43,20 +19,41 @@ class CarouselModal extends Component {
           </button>
         </div>
 
-        <div className="carousel container">
-          <Slider {...settings_one}>
-            {imgs.map(img => (
-              <CarouselImage img={img} />
-            ))}
-          </Slider>
+        <div className="carousel slide" id="modal-carousel">
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img className="d-block m-auto" src={imgs[0]} />
+            </div>
+            <div className="carousel-item">
+              <img className="d-block m-auto" src={imgs[1]} />
+            </div>
+            <div className="carousel-item">
+              <img className="d-block m-auto" src={imgs[2]} />
+            </div>
+
+            <a
+              className="carousel-control-prev"
+              href="#modal-carousel"
+              role="button"
+              data-slide="prev"
+              
+            >
+              {prev}
+            </a>
+
+            <a
+              className="carousel-control-next"
+              href="#modal-carousel"
+              role="button"
+              data-slide="next"
+            >
+              {next}
+            </a>
+          </div>
         </div>
 
-        <div className="prompt container">
-          <Slider {...settings_two}>
-              {imgs.map(img => (
-                <img src={img}/>
-              ))}
-          </Slider>
+        <div className="prompt container" style={{overflow: 'hidden'}}>
+          {this.props.imgs.map(img => <img src={img}></img>)}
         </div>
       </ReactModal>
     );
