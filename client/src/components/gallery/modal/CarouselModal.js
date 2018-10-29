@@ -16,25 +16,49 @@ class CarouselModal extends Component {
     this.state = {
       active: 0,
       animating: false,
-      animationDuration: 200
+      animationDuration: 200,
+      carouselWidth: window.innerWidth > 1036 ? 1036 : window.innerWidth
     }
   }
 
   handleCarouselTurn (type) {
+
+    var carouselWidth = this.state.carouselWidth;
+    var carouselHalfWidth = carouselWidth / 2;
+    var captionImageWidth = $('#Captions ol img')[0].width;
+    var previousActiveImageOffSet = $('#Captions ol .active')[0].offsetLeft + captionImageWidth / 2;
+
+    var allCaptionImages = $('#Captions ol li');
+    var lastCaptionImageOffSet = allCaptionImages[allCaptionImages.length - 1].offsetLeft;
+    var totalOffSet = $('#Captions ol')[0].offsetLeft;
+
     if (!this.state.animating) {
       const change = type === 'next' ? 1 : -1
       this.setState({
         active: this.state.active + change,
         animating: true
-      })
-      var _this = this;
-      setTimeout(function() {_this.setState({animating: false})}, _this.state.animationDuration)
+      }, () => {
+        
+        var currentActiveImageOffSet = $('#Captions ol .active')[0].offsetLeft + captionImageWidth / 2;
+        var move = 0;
 
-      // $('#Captions').css('margin-left', '0px');
-      $('#Captions').animate({marginLeft: "-123px" }, 500)
-     
+        if (currentActiveImageOffSet > carouselHalfWidth) {
+          if (previousActiveImageOffSet > carouselHalfWidth) {
+            move = currentActiveImageOffSet - previousActiveImageOffSet;
+
+            var lastImageDiff = lastCaptionImageOffSet  + totalOffSet - carouselWidth ;
+            if (lastImageDiff < 0) move += lastImageDiff;
+            
+          }
+          else move = currentActiveImageOffSet - carouselHalfWidth
+        }
+
+        $('#Captions ol').animate({marginLeft: `${type === 'next' ? '-' : '+'}=${move}px` }, 500);
+          
+        var _this = this;
+        setTimeout(function() {_this.setState({animating: false})}, _this.state.animationDuration)
+      })
     }
-  
   }
 
   componentDidMount () {
@@ -62,7 +86,7 @@ class CarouselModal extends Component {
 
   render() {
 
-    var carouselWidth = window.innerWidth >= 1036 ? 1036 : window.innerWidth;
+    var carouselWidth = this.state.carouselWidth >= 1036 ? 1036 : this.state.carouselWidth;
     const { handleCloseModal, showModal, imgs, activeImg } = this.props;
 
     return (

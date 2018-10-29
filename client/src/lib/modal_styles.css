@@ -57,6 +57,11 @@
   height: 67px;
 }
 
+#Captions ol {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 @media (max-width: 735px) {
   #modal-carousel .carousel-arrows svg {
     height: 30px;

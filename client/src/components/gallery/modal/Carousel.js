@@ -13,7 +13,7 @@ export default function Carousel({ imgs, carouselWidth, handleCarouselTurn, acti
       data-interval="false"
     >
       <div
-        className="carousel-inner container-fluid flex-nowrap"
+        className="carousel-inner container-fluid flex-nowrap p-0"
         id="Carousel-inner"
         style={{ width: `${carouselWidth}px` }}
         role="listbox"
