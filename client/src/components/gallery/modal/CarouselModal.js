@@ -29,8 +29,12 @@ class CarouselModal extends Component {
       })
       var _this = this;
       setTimeout(function() {_this.setState({animating: false})}, _this.state.animationDuration)
+
+      // $('#Captions').css('margin-left', '0px');
+      $('#Captions').animate({marginLeft: "-123px" }, 500)
+     
     }
-    
+  
   }
 
   componentDidMount () {

@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 export default function Captions({ imgs, carouselWidth, active }) {
 
   return (
-    <ol class="carousel-indicators" id="Captions">
+    <div>
+    <ol class="carousel-indicators  justify-content-start" id="Captions" style={{width: `${carouselWidth}px`, overflow: 'hidden'}}>
 
       {imgs.map((img, idx) => 
-        <li data-target="#modal-carousel" data-slide-to="0" className={`${active === idx ? 'active' : ''} h-100 w-auto mx-2`}>
+        <li data-target="#modal-carousel" data-slide-to="0" className={`${active === idx ? 'active' : ''} h-100 w-auto mx-2 `} style={{position: 'relative'}}>
         <img
           className="d-block h-100 w-auto"
           src={img}
@@ -14,6 +15,8 @@ export default function Captions({ imgs, carouselWidth, active }) {
       </li>
       )}
     </ol>
+    </div>
+    
   );
 }
 
