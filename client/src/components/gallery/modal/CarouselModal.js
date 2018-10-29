@@ -34,9 +34,13 @@ class CarouselModal extends Component {
     var totalOffSet = $('#Captions ol')[0].offsetLeft;
 
     if (!this.state.animating) {
-      const change = type === 'next' ? 1 : -1
+
+      if (this.state.active === allCaptionImages.length - 1 && type === 'next') var newActive = 0;
+      else if (this.state.active === 0 && type === 'prev') var newActive = allCaptionImages.length - 1;
+      else newActive = this.state.active + (type === 'next' ? 1 : -1); 
+
       this.setState({
-        active: this.state.active + change,
+        active: newActive,
         animating: true
       }, () => {
         
@@ -44,7 +48,9 @@ class CarouselModal extends Component {
         var move = 0;
 
         if (type === 'next') {
-          if (currentActiveImageOffSet > carouselHalfWidth) {
+          if (this.state.active === 0) move = totalOffSet; 
+          
+          else if (currentActiveImageOffSet > carouselHalfWidth) {
             if (previousActiveImageOffSet > carouselHalfWidth) {
               move = currentActiveImageOffSet - previousActiveImageOffSet;
               var lastImageDiff = lastCaptionImageOffSet  + totalOffSet - carouselWidth ;
@@ -55,16 +61,17 @@ class CarouselModal extends Component {
         }
 
         if (type === 'prev') {
-
-          var distanceFromActiveToLast = lastCaptionImageOffSet + captionImageWidth - currentActiveImageOffSet;
-
-          if (distanceFromActiveToLast > carouselHalfWidth) {
-            if (distanceFromActiveToLast - carouselHalfWidth > captionImageWidth) {
-              move = currentActiveImageOffSet - previousActiveImageOffSet;
-             
-              if (move < totalOffSet) move = totalOffSet;
+          if (this.state.active === allCaptionImages.length - 1) move = lastCaptionImageOffSet - carouselWidth + captionImageWidth;
+          else {
+            var distanceFromActiveToLast = lastCaptionImageOffSet + captionImageWidth - currentActiveImageOffSet;
+            if (distanceFromActiveToLast > carouselHalfWidth) {
+              if (distanceFromActiveToLast - carouselHalfWidth > captionImageWidth) {
+                move = currentActiveImageOffSet - previousActiveImageOffSet;
+               
+                if (move < totalOffSet) move = totalOffSet;
+              }
+              else move = carouselHalfWidth - distanceFromActiveToLast;
             }
-            else move = carouselHalfWidth - distanceFromActiveToLast;
           }
         }
       
