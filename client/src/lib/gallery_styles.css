@@ -1,12 +1,24 @@
 .gallery {
   display: grid;
   position: relative;
-  height: 292.67px;
+  height: 590px;
   grid-template-columns: 2fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
     'img0 img1 img3'
     'img0 img2 img4';
+}
+
+@media (max-height: 860px), (max-width: 1200px) {
+  .gallery {
+    height: 442px;
+  }
+}
+
+@media (max-height: 678px) {
+  .gallery {
+    height: 295px;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -31,12 +43,13 @@
   .gallery {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+    grid-template-areas: 
+    "img0"
   }
 
   .gallery-div img:not(.img0) {
     display: none;
   }
-
   .hide-text {
     display: none;
   }
@@ -47,7 +60,7 @@
   z-index: 1;
 }
 
-.button-top {
+.button-group-top {
   right: 0;
 }
 
@@ -106,49 +119,3 @@
   font-size: 15px;
   font-weight: 200;
 }
-
-.ReactModal__Body--open {
-  overflow-y: hidden;
-}
-
-.ReactModal__Overlay {
-  position: fixed;
-  z-index: 2;
-}
-
-.ReactModal__Content {
-  background-color: black;
-  z-index: 3;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  display: grid;
-  grid-template-rows: 86px minmax(auto, 414px) 120px;
-  grid-template-areas:
-    'exit'
-    'carousel'
-    'prompt';
-}
-
-.exit {
-  grid-area: exit;
-}
-
-.exit-button {
-  position: absolute;
-  right: 0;
-  top: 0;
-  background-color: black;
-  cursor: pointer;
-}
-
-.prompt {
-  grid-area: prompt;
-}
-
-#modal-carousel {
-  grid-area: carousel;
-
-} 

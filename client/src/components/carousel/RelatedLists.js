@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import RoomCard from './RoomCard';
 import Arrow from './Arrow';
+import { next_arrow } from '../../lib/svg';
 
 class RelatedLists extends Component {
   constructor() {
@@ -13,7 +14,7 @@ class RelatedLists extends Component {
     }
   }
 
-  //need to fix
+  //will be fixed with server side rendering implemented
   componentDidMount() {
     var rooms = [];
     var count = 0;
@@ -32,6 +33,7 @@ class RelatedLists extends Component {
     const settings = {
       infinite: false,
       slidesToScroll: 1,
+      slidesToShow: 3,
       responsive: [
         {
           breakpoint: 1410,
@@ -59,13 +61,12 @@ class RelatedLists extends Component {
     return (
       this.state.rooms.length > 0 ? 
       <div className="container">
-        
-          <Slider {...settings}>
-            {this.state.rooms.map(room => <RoomCard key={room.id} {...room} />)}
-          </Slider>
-        
+        <Slider {...settings}>
+          {this.state.rooms.map(room => <RoomCard key={room.id} {...room} />)}
+        </Slider>
       </div>
-      : <div> Temporary Loading Screen , will be gone in production </div>
+      : 
+      <div> Temporary Loading Screen , will be gone in production </div>
     );
   }
 }

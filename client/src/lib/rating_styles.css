@@ -4,10 +4,10 @@
   margin: -2px;
 }
 
-.half-yellow-star {
+.half-teal-star {
   position: absolute;
   left: 0;
-  width: 7px;
+  width: 5.7px;
   color: teal;
   overflow: hidden;
 }
@@ -15,12 +15,12 @@
 .half-purple-star {
   position: absolute;
   left: 0;
-  width: 7px;
+  width: 5.7px;
   color: rgb(166, 29, 85);
   overflow: hidden;
 }
 
-.yellow-star {
+.teal-star {
   position: relative;
   color: teal;
 }

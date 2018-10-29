@@ -42,7 +42,7 @@ for (var i = 0; i < size; i++) {
 
   while (position < size) {
     position += random(Math.floor(size / 5)) + 1;
-    if (position <= size) related.push(position);
+    if (position < size) related.push(position);
   }
 
   for (var k = 0; k < random(10) + 10; k++) {
@@ -54,7 +54,7 @@ for (var i = 0; i < size; i++) {
     id: i,
     beds: random(4) + 2,
     price: random(500),
-    rating: random(6),
+    rating: Math.random()*5,
     reviews: random(200),
     related,
     imgs

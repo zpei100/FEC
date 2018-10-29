@@ -1,0 +1,12 @@
+main active carousel picture needs to be responsive
+caption text position needs to be fixed 
+thumbnails need to hide overflow. Additional container needed - easy 
+active tag needs to be toggled for thumbnails -- jquery 
+define active tag to be highlighted
+define animation - margin left, when active image in the thumbnail is the middle one 
+two arrow buttons are closer to the two ends of the screen 
+
+
+
+
+quick view window - 2 days.

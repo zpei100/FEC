@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 import GalleryImage from './GalleryImage';
-import CarouselModal from './CarouselModal';
+import CarouselModal from './modal/CarouselModal';
+import TopButton from './TopButton';
 import { save, share } from '../../lib/svg';
-import './styles.css';
+import '../../lib/gallery_styles.css';
+import ViewPhotos from './ViewPhotos';
 
 class Gallery extends Component {
   constructor() {
     super();
     this.state = {
       showModal: true,
-      activeImg: 0 
+      activeImg: 0
     };
   }
 
@@ -21,7 +23,6 @@ class Gallery extends Component {
 
   handleCloseModal() {
     this.setState({ showModal: false });
-    console.log(this.state.showModel)
   }
 
   componentDidMount() {
@@ -56,7 +57,7 @@ class Gallery extends Component {
     ele.hover(
       function(e) {
         $('.button-bottom').css({
-          transform: 'translateY(-12px)',
+          transform: 'translateY(-15px)',
           transition: 'opacity 0.2s ease-in, transform 0.35s'
         });
       },
@@ -73,36 +74,27 @@ class Gallery extends Component {
   render() {
     return (
       <div className="gallery">
-        <CarouselModal handleCloseModal={this.handleCloseModal.bind(this)} showModal={this.state.showModal} imgs={this.props.imgs} activeImg={this.state.activeImg}/>
+        <CarouselModal
+          handleCloseModal={this.handleCloseModal.bind(this)}
+          showModal={this.state.showModal}
+          imgs={this.props.imgs}
+          activeImg={this.state.activeImg}
+        />
 
-        <div className="button-top button mx-4 my-4 d-flex">
-          <button className="btn btn-lg mx-3 py-1 button-text d-flex btn-light">
-            <div className="mr-2 align-self-center">{share}</div>
-            <div className="hide-text" style={{ lineHeight: '25px' }}>Share</div>
-          </button>
-
-          <button className="btn btn-lg py-1 button-text d-flex btn-light">
-            <div className="mr-2 align-self-center">{save}</div>
-            <div className="hide-text" style={{ lineHeight: '25px' }}>Save</div>
-          </button>
+        <div className="button-group-top button mx-4 my-4 d-flex">
+          <TopButton type="share" />
+          <TopButton type="save" />
         </div>
 
         <div className="button-bottom button mx-4 my-4">
-          <button
-            onClick={this.handleOpenModal.bind(this)}
-            className="btn btn-lg py-1 button-text btn-light"
-          >
-            View Photos
-          </button>
+          <ViewPhotos handleOpenModal={this.handleOpenModal.bind(this)} />
         </div>
 
         {this.props.imgs.slice(0, 5).map((img, idx) => (
-          <div key={idx} className={`img${idx} gallery-div`}>
+          <div key={idx} className={`img${idx} gallery-div border border-dark`}>
             <GalleryImage idx={`img${idx}`} img={img} />
           </div>
         ))}
-
-        
       </div>
     );
   }

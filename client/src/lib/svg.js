@@ -47,9 +47,15 @@ export const exit = (
   <svg
     viewBox="0 0 24 24"
     role="img"
-    ariaLabel="Close"
+    aria-label="Close"
     focusable="false"
-    style={{height: "2em", width: "2em", display: "block", fill: "rgb(255, 255, 255)"}}>
+    style={{
+      height: '2em',
+      width: '2em',
+      display: 'block',
+      fill: 'rgb(255, 255, 255)'
+    }}
+  >
     <path
       d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22"
       fillRule="evenodd"
@@ -57,39 +63,69 @@ export const exit = (
   </svg>
 );
 
-const arrowStyle = {
+const arrow_style = {
   display: `block`,
   height: `70px`,
   width: `70px`,
-  fill: `rgb(255,255,255)`,
+  fill: `rgb(255,255,255)`
 };
 
-export const next = (
+export const next_arrow = (
   <svg
     viewBox="0 0 18 18"
     role="img"
-    aria-label="next"
+    aria-label="Next"
     focusable="false"
-    style={arrowStyle}
+    style={arrow_style}
   >
     <path
-      d={"m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z"}
+      d={
+        'm4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z'
+      }
       fillRule="evenodd"
     />
   </svg>
-)
+);
 
-export const prev = (
+export const prev_arrow = (
   <svg
     viewBox="0 0 18 18"
     role="img"
-    aria-label="prev"
+    aria-label="Prev"
     focusable="false"
-    style={arrowStyle}
+    style={arrow_style}
   >
     <path
-      d={"m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z"}
+      d={
+        'm13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z'
+      }
       fillRule="evenodd"
     />
   </svg>
-)
+);
+
+export const heart = (
+  <svg
+    viewBox="20 0 25 25"
+    fill="#484848"
+    fillOpacity="0.5"
+    stroke="#ffffff"
+    strokeWidth="2.5"
+    focusable="false"
+    aria-label="Add listing to a list"
+    role="img"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={{
+      height: `28px`,
+      width: `28px`,
+      display: `block`,
+      overflow: `visible`,
+      position: 'absolute',
+      right: 0
+    }}
+    className="m-2"
+  >
+    <path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38" />
+  </svg>
+);

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import '../../lib/style.css';
+import '../../lib/rating_styles.css';
 
 class Rating extends Component {
   componentDidMount() {
     var color = this.props.color;
-
     var rating = this.props.rating;
     var floor = Math.floor(rating);
     var ceil = Math.ceil(rating);
@@ -35,21 +34,9 @@ class Rating extends Component {
   render() {
     return (
       <span className="mr-2" id={this.props.roomId}>
-        <span className="star-o" data-rating="1">
+        {[1,2,3,4,5].map(() => <span className="star-o">
           &#x2605;
-        </span>
-        <span className="star-o" data-rating="2">
-          &#x2605;
-        </span>
-        <span className="star-o" data-rating="3">
-          &#x2605;
-        </span>
-        <span className="star-o" data-rating="4">
-          &#x2605;
-        </span>
-        <span className="star-o" data-rating="5">
-          &#x2605;
-        </span>
+        </span>)}
       </span>
     );
   }
