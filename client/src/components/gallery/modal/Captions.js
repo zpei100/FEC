@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 export default function Captions({ imgs, carouselWidth, active }) {
+
   return (
     <ol class="carousel-indicators" id="Captions">
 

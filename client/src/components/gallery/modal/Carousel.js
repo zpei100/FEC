@@ -10,17 +10,17 @@ export default function Carousel({ imgs, carouselWidth, handleCarouselTurn, acti
     <div
       className="carousel slide carousel-fade carousel-thumbnails row m-0"
       id="modal-carousel"
-      data-ride="carousel"
+      data-interval="false"
     >
       <div
-        className="carousel-inner container-fluid"
+        className="carousel-inner container-fluid flex-nowrap"
         id="Carousel-inner"
         style={{ width: `${carouselWidth}px` }}
         role="listbox"
       >
 
-      {imgs.map((img, idx) => 
-        <div className={`carousel-item h-100 ${idx === active ? 'active' : ''}`}>
+      {imgs.map(img => 
+        <div className="carousel-item h-100" style={{maxHeight: '700px '}}>
           <div className="carousel-caption caption-text" >CAPTIONS TEXT AND STUFF</div>
           <img className="d-block h-100 w-auto" src={img} alt="" />
         </div>

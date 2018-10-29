@@ -46,7 +46,7 @@ for (var i = 0; i < size; i++) {
   }
 
   for (var k = 0; k < random(10) + 10; k++) {
-    imgs.push(`https://picsum.photos/333/222/?image=${random(999)}`);
+    imgs.push(`https://picsum.photos/666/444/?image=${random(999)}`);
   }
 
   new Room({
@@ -54,7 +54,7 @@ for (var i = 0; i < size; i++) {
     id: i,
     beds: random(4) + 2,
     price: random(500),
-    rating: Math.random()*5,
+    rating: Math.random() * 5,
     reviews: random(200),
     related,
     imgs

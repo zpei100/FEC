@@ -1,4 +1,3 @@
-
 .ReactModal__Body--open {
   overflow-y: hidden;
 }
@@ -45,9 +44,13 @@
   bottom: 0;
 }
 
+#Captions img .active {
+  filter: brightness(50%);
+}
+
 #modal-carousel {
   grid-area: Carousel;
-} 
+}
 
 .caption-text {
   height: 20px;
@@ -59,12 +62,13 @@
 }
 
 @media (max-width: 735px) {
-  #modal-carousel .carousel-arrows svg{
+  #modal-carousel .carousel-arrows svg {
     height: 30px;
     width: 30px;
   }
 }
 
-.carousel-item img .active {
-  display: none;
+#Captions li:not(.active) img {
+  filter: brightness(50%)
 }
+
