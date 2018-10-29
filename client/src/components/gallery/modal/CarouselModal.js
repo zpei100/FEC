@@ -30,6 +30,7 @@ class CarouselModal extends Component {
 
     var allCaptionImages = $('#Captions ol li');
     var lastCaptionImageOffSet = allCaptionImages[allCaptionImages.length - 1].offsetLeft;
+
     var totalOffSet = $('#Captions ol')[0].offsetLeft;
 
     if (!this.state.animating) {
@@ -42,18 +43,34 @@ class CarouselModal extends Component {
         var currentActiveImageOffSet = $('#Captions ol .active')[0].offsetLeft + captionImageWidth / 2;
         var move = 0;
 
-        if (currentActiveImageOffSet > carouselHalfWidth) {
-          if (previousActiveImageOffSet > carouselHalfWidth) {
-            move = currentActiveImageOffSet - previousActiveImageOffSet;
-
-            var lastImageDiff = lastCaptionImageOffSet  + totalOffSet - carouselWidth ;
-            if (lastImageDiff < 0) move += lastImageDiff;
-            
-          }
-          else move = currentActiveImageOffSet - carouselHalfWidth
+        if (type === 'next') {
+          if (currentActiveImageOffSet > carouselHalfWidth) {
+            if (previousActiveImageOffSet > carouselHalfWidth) {
+              move = currentActiveImageOffSet - previousActiveImageOffSet;
+              var lastImageDiff = lastCaptionImageOffSet  + totalOffSet - carouselWidth ;
+              if (lastImageDiff < 0) move += lastImageDiff;
+            }
+            else move = currentActiveImageOffSet - carouselHalfWidth
+          } 
         }
 
-        $('#Captions ol').animate({marginLeft: `${type === 'next' ? '-' : '+'}=${move}px` }, 500);
+        if (type === 'prev') {
+
+          var distanceFromActiveToLast = lastCaptionImageOffSet + captionImageWidth - currentActiveImageOffSet;
+
+          if (distanceFromActiveToLast > carouselHalfWidth) {
+            if (distanceFromActiveToLast - carouselHalfWidth > captionImageWidth) {
+              move = currentActiveImageOffSet - previousActiveImageOffSet;
+             
+              if (move < totalOffSet) move = totalOffSet;
+            }
+            else move = carouselHalfWidth - distanceFromActiveToLast;
+          }
+        }
+      
+        
+
+        $('#Captions ol').animate({marginLeft: `-=${move}px` }, 500);
           
         var _this = this;
         setTimeout(function() {_this.setState({animating: false})}, _this.state.animationDuration)
