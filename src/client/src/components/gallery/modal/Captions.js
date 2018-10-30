@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from "react-redux";
 
-export default function Captions({ imgs, carouselWidth, active }) {
+const Captions = function ({ room: { imgs }, carouselWidth, activeImage }) {
 
   return (
     <div id="Captions" className="container-fluid">
@@ -10,7 +11,7 @@ export default function Captions({ imgs, carouselWidth, active }) {
             <li
               data-target="#modal-carousel"
               data-slide-to="0"
-              className={`${active === idx ? 'active' : ''} h-100 w-auto mx-2`}
+              className={`${activeImage === idx ? 'active' : ''} h-100 w-auto mx-2`}
               style={{ position: 'relative' }}
               key={idx}
             >
@@ -22,6 +23,17 @@ export default function Captions({ imgs, carouselWidth, active }) {
     </div>
   );
 }
+
+const mapStateToProps = function(state) {
+  return {
+    room: state.room,
+    activeImage: state.activeImage
+  }
+}
+
+export default connect(mapStateToProps)(Captions);
+
+
 
 /*
 <div id="Captions" className="container-fluid">

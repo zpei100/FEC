@@ -32,5 +32,6 @@ module.exports = {
       filename: 'index.html',
       inject: 'body'
     })
-  ]
+  ],
+  devtool: "source-map"
 };

@@ -11,7 +11,7 @@ app.use(express.static(path.resolve(__dirname, '../../dist')))
 
 app.get('/room/:id', function(req, res) {
   const { id } = req.params;
-  Room.find({ id }).then(room => res.send(room));
+  Room.find({ id }).then(rooms => res.send(rooms[0]));
   //templating needed to inject roomid into html somehow, for now, front end sends get request with id to
   //to get data; fix later !!!!!!
 });

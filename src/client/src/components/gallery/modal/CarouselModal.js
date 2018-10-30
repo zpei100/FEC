@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import $ from 'jquery';
-
+import { connect } from 'react-redux';
 
 import ExitBtn from './ExitBtn';
 import Carousel from './Carousel';
-import Captions from './Captions'
+import Captions from './Captions';
+
+import changeActiveImage from "../../../actionCreators/changeActiveImage";
+import { bindActionCreators } from 'redux';
 
 class CarouselModal extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      active: 0,
       animating: false,
       animationDuration: 200,
       carouselWidth: window.innerWidth > 1036 ? 1036 : window.innerWidth
@@ -35,12 +37,14 @@ class CarouselModal extends Component {
     if (!this.state.animating) {
 
       var newActive;
-      if (this.state.active === allCaptionImages.length - 1 && type === 'next') newActive = 0;
-      else if (this.state.active === 0 && type === 'prev') newActive = allCaptionImages.length - 1;
-      else newActive = this.state.active + (type === 'next' ? 1 : -1); 
+      if (this.props.activeImage === allCaptionImages.length - 1 && type === 'next') newActive = 0;
+      else if (this.props.activeImage === 0 && type === 'prev') newActive = allCaptionImages.length - 1;
+      else newActive = this.props.activeImage + (type === 'next' ? 1 : -1); 
+
+      //use action creator
+      this.props.changeActiveImage(newActive);
 
       this.setState({
-        active: newActive,
         animating: true
       }, () => {
         
@@ -48,7 +52,7 @@ class CarouselModal extends Component {
         var move = 0;
 
         if (type === 'next') {
-          if (this.state.active === 0) move = totalOffSet; 
+          if (this.props.activeImage === 0) move = totalOffSet; 
           
           else if (currentActiveImageOffSet > carouselHalfWidth) {
             if (previousActiveImageOffSet > carouselHalfWidth) {
@@ -61,7 +65,7 @@ class CarouselModal extends Component {
         }
 
         if (type === 'prev') {
-          if (this.state.active === allCaptionImages.length - 1) move = lastCaptionImageOffSet - carouselWidth + captionImageWidth;
+          if (this.props.activeImage === allCaptionImages.length - 1) move = lastCaptionImageOffSet - carouselWidth + captionImageWidth;
           else {
             var distanceFromActiveToLast = lastCaptionImageOffSet + captionImageWidth - currentActiveImageOffSet;
             if (distanceFromActiveToLast > carouselHalfWidth) {
@@ -84,7 +88,7 @@ class CarouselModal extends Component {
   }
 
   toggleActiveCaption () {
-    $($('.carousel-item')[this.state.active]).toggleClass('active');
+    $($('.carousel-item')[this.props.activeImage]).toggleClass('active');
   }
 
   handleModalShown () {
@@ -118,7 +122,8 @@ class CarouselModal extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.showModal !== prevProps.showModal && this.props.showModal === true) {
       if (this.props.activeImg !== prevProps.activeImg) {
-        this.setState({active: this.props.activeImg}, this.handleModalShown.bind(this));
+
+        // use action creator
       } else this.handleModalShown();
     }
   }
@@ -151,14 +156,27 @@ class CarouselModal extends Component {
 
     return (
       <ReactModal isOpen={this.props.showModal} className="Modal" ariaHideApp={false}>
-        <ExitBtn handleCloseModal={handleCloseModal}/>
-        <Carousel carouselWidth={carouselWidth} imgs={imgs} handleCarouselTurn={this.handleCarouselTurn.bind(this)} active={this.state.active}/>
+        <ExitBtn />
+        <Carousel carouselWidth={carouselWidth} handleCarouselTurn={this.handleCarouselTurn.bind(this)} />
         <Captions carouselWidth={carouselWidth} id="Captions" imgs={imgs} active={this.state.active}/>
       </ReactModal>
     );
   }
 }
 
-export default CarouselModal;
+const mapStateToProps = function(state) {
+  return {
+    showModal: state.showModal,
+    activeImage: state.activeImage
+  }
+}
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    changeActiveImage: bindActionCreators(changeActiveImage, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CarouselModal);
 
 //<Captions carouselWidth={carouselWidth} id="Captions" imgs={imgs}/>
