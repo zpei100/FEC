@@ -1,0 +1,31 @@
+.star-o {
+  color: gray;
+  position: relative;
+  margin: -2px;
+}
+
+.half-teal-star {
+  position: absolute;
+  left: 0;
+  width: 5.7px;
+  color: teal;
+  overflow: hidden;
+}
+
+.half-purple-star {
+  position: absolute;
+  left: 0;
+  width: 5.7px;
+  color: rgb(166, 29, 85);
+  overflow: hidden;
+}
+
+.teal-star {
+  position: relative;
+  color: teal;
+}
+
+.purple-star {
+  position: relative;
+  color: rgb(166, 29, 85);
+}

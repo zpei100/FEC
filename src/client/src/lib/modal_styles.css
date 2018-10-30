@@ -1,0 +1,75 @@
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
+
+.ReactModal__Overlay {
+  position: fixed;
+  z-index: 2;
+}
+
+.ReactModal__Content {
+  background-color: black;
+  z-index: 3;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+#ExitBtn {
+  height: 86px;
+}
+
+#exit-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: black;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 33px;
+  border: none;
+}
+
+.carousel-item {
+  min-height: 700px;
+}
+
+#Captions {
+  height: 99px;
+  margin-bottom: 24px;
+  margin-top: 0;
+  position: absolute;
+  bottom: 0;
+}
+
+#Captions img .active {
+  filter: brightness(50%);
+}
+
+.caption-text {
+  height: 20px;
+  margin-bottom: 12px;
+}
+
+#caption-slides {
+  height: 67px;
+}
+
+#Captions ol {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@media (max-width: 735px) {
+  #modal-carousel .carousel-arrows svg {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+#Captions li:not(.active) img {
+  filter: brightness(50%)
+}
+
