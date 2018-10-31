@@ -1,8 +1,9 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import $ from 'jquery';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 import './lib/gallery_styles.css';
 import './lib/modal_styles.css';
@@ -13,13 +14,11 @@ import RelatedListings from '../src/components/carousel/RelatedListings'
 import Gallery from "../src/components/gallery/Gallery";
 
 import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initialize";
-
-
   
   const initialState = window.__initialState__;
   delete window.__initialState__;
 
-  const store = createStore(rootReducer, initialState);
+  const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
 
 
   hydrate(

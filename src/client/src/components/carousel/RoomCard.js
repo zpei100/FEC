@@ -1,16 +1,24 @@
 import React from 'react';
-
+import { connect } from 'react-redux'
+import { bindActionCreators } from "redux";
 import Rating from './Rating';
 import { heart } from '../../lib/svg';
+import updateFavorites from "../../actionCreators/updateFavorites";
 
-export default function RoomCard({type, tag, description, id, beds, price, rating, reviews, imgs}) {
+const RoomCard = function ({type, tag, description, id, beds, price, rating, reviews, imgs, favorites, updateFavorites}) {
+
+  const favorite = (favorites.includes(id) ? true : false)
+
+  const onClick = function() {
+    updateFavorites(id)
+  }
 
   if (imgs) {
     const thumbNail = imgs[0];
     return (
       <div className="p-2">
         <div style={{ position: 'relative' }} className="container">
-          {heart}
+          {heart(favorite, onClick)}
           <img style={{cursor: "pointer"}} className="m-auto w-100 h-auto" src={thumbNail} alt=""/>
         </div>
   
@@ -60,5 +68,19 @@ export default function RoomCard({type, tag, description, id, beds, price, ratin
     return ""
   }
 }
+
+const mapStateToProps = function(state) {
+  return {
+    favorites: state.user.favorites
+  };
+};
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    updateFavorites: bindActionCreators(updateFavorites, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RoomCard);
 
  

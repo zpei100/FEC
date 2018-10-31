@@ -1,22 +1,30 @@
 import express from 'express';
-import { Room } from './db/schema';
+import { Room, User } from './db/schema';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import path from 'path';
 
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
+import session from 'express-session';
 
 import rootReducer from '../client/src/reducers/rootReducer';
-import Gallery from "../client/src/components/gallery/Gallery";
+import Gallery from '../client/src/components/gallery/Gallery';
 import RelatedListings from '../client/src/components/carousel/RelatedListings';
 
 //need to webpack two different files
-const template = function(initialState = {}, content_one = '', content_two = "") {
+const template = function(
+  initialState = {},
+  content_one = '',
+  content_two = ''
+) {
   const scripts = content_one
-    ? `<script>window.__initialState__ = ${JSON.stringify(initialState)}</script><script src="client.js"></script>`
+    ? `<script>window.__initialState__ = ${JSON.stringify(
+        initialState
+      )}</script><script src="client.js"></script>`
     : `<script src="bundle.js"></script>`;
 
   const html = `
@@ -63,11 +71,54 @@ const template = function(initialState = {}, content_one = '', content_two = "")
 
 const app = express();
 
+app.use(
+  session({
+    secret: 'password',
+    saveUninitialized: true,
+    resave: false
+  })
+);
+
 app.use(bodyParser());
 app.use(cors());
 app.use(express.static(path.resolve(__dirname, '../../dist')));
 
+app.post('/updateFavorites', function(req, res) {
+
+  const userId = req.session.user ? req.session.user : 15;
+  const {id} = req.body;
+
+  User.find({id: userId}).then(users => {
+    let currentFavorites = users[0].favorites;
+    const len = currentFavorites.length;
+    currentFavorites = currentFavorites.filter(num => num !== id);
+    if (currentFavorites.length !== len) currentFavorites.push(id);
+    User.findOneAndUpdate({id: userId}, {favorites: currentFavorites}).then(result => {
+      res.status(200).send(result.favorites);
+    })
+  })
+})
+
+app.get('/csr/getUser', function(req, res) {
+  const userId = req.session.user ? req.session.user : 15;
+
+  User.find({ id: userId }).then(users => {
+    const user = users[0];
+    res.send(user);
+  })
+})
+
+app.get('/csr/:id', function(req, res) {
+  const id = parseInt(req.params.id);
+  Room.find({ id }).then(rooms => {
+    const room = rooms[0];
+    res.send(room);
+  })
+})
+
 app.get('/room/:id', function(req, res) {
+  //id defaults to 15 for development environment;
+  const userId = req.session.user ? req.session.user : 15;
 
   const id = parseInt(req.params.id);
   Room.find({ id }).then(rooms => {
@@ -78,29 +129,34 @@ app.get('/room/:id', function(req, res) {
 
     related.forEach((id, idx, related) => {
       Room.find({ id }).then(rooms => {
-        relatedListings.push(rooms[0])
+        relatedListings.push(rooms[0]);
         if (relatedListings.length === related.length) {
-          const store = createStore(rootReducer, { room, relatedListings });
-          const initialState = store.getState();
+          User.find({ id: userId }).then(users => {
+            const { favorites, id, username } = users[0];
+            const user = {favorites, id, username }
 
-          const content_one = renderToString(
-            <Provider store={store}>
-              <Gallery />
-            </Provider>
-          );
+            const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
+            const initialState = store.getState();
 
-          const content_two = renderToString(
-            <Provider store={store}>
-              <RelatedListings />
-            </Provider>
-          );
-      
-          const html = template(initialState, content_one, content_two);
-          res.status(200).send(html);
+            const content_one = renderToString(
+              <Provider store={store}>
+                <Gallery />
+              </Provider>
+            );
+
+            const content_two = renderToString(
+              <Provider store={store}>
+                <RelatedListings />
+              </Provider>
+            );
+
+            const html = template(initialState, content_one, content_two);
+            res.status(200).send(html);
+          });
         }
-      })
+      });
     });
-  })
+  });
 });
 
 app.listen(4000, function() {

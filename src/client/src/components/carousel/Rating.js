@@ -20,13 +20,8 @@ class Rating extends Component {
 
     var $stars = $(`#stars${this.props.roomId}`)[0].children;
 
-    console.log($stars);
-    console.log('the rating for this place is: ', rating)
-
     for (var i = 0; i < rating - 1; i++) {
       $($stars[i]).addClass(`${color}-star`);
-      console.log($stars[i], 'for the room: ', this.props.roomId)
-      console.log('same as before, but this time inside the for loop: ',  $stars)
     }
 
     if (rating !== Math.floor(rating))

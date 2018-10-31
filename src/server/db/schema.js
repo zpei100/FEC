@@ -18,6 +18,17 @@ const roomSchema = new mongoose.Schema({
   related: [Number]
 });
 
-const Room = mongoose.model('Rooms', roomSchema);
+const userSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+    unique: true
+  },
+  username: String,
+  email: String,
+  favorites: [Number]
+});
 
-module.exports = { Room };
+const Room = mongoose.model('Rooms', roomSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = { Room, User };
