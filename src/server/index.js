@@ -32,6 +32,7 @@ const template = function(initialState = {}, content = '') {
       crossorigin="anonymous">
     <title>FEC</title>
     <base href="/" target="_blank">
+    <link rel="stylesheet" href="styles.css" />
   </head>
   
   <body>

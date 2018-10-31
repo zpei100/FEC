@@ -5,10 +5,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 
-import './lib/gallery_styles.css';
-import './lib/modal_styles.css';
-import './lib/rating_styles.css';
-
 import rootReducer from './reducers/rootReducer';
 import App from './components/App';
 import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initialize";
