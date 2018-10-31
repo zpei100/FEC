@@ -3,14 +3,15 @@ import { hydrate } from 'react-dom';
 import $ from 'jquery';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import axios from 'axios';
 
 import './lib/gallery_styles.css';
 import './lib/modal_styles.css';
 import './lib/rating_styles.css';
 
 import rootReducer from './reducers/rootReducer';
-import App from './components/App';
+import RelatedListings from '../src/components/carousel/RelatedListings'
+import Gallery from "../src/components/gallery/Gallery";
+
 import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initialize";
 
 
@@ -20,12 +21,22 @@ import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initia
 
   const store = createStore(rootReducer, initialState);
 
+
   hydrate(
     <Provider store={store}>
-      <App />
+      <RelatedListings />
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('related-listings-app')
   );
+
+  hydrate(
+    <Provider store={store}>
+      <Gallery />
+    </Provider>,
+    document.getElementById('gallery-app')
+  );
+
+  
 
   $(document).ready(function() {
     const $galleryImages = $('.gallery img');

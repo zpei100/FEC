@@ -8,13 +8,14 @@ import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
-import App from '../client/src/components/App';
 
 import rootReducer from '../client/src/reducers/rootReducer';
+import Gallery from "../client/src/components/gallery/Gallery";
+import RelatedListings from '../client/src/components/carousel/RelatedListings';
 
 //need to webpack two different files
-const template = function(initialState = {}, content = '') {
-  const scripts = content
+const template = function(initialState = {}, content_one = '', content_two = "") {
+  const scripts = content_one
     ? `<script>window.__initialState__ = ${JSON.stringify(initialState)}</script><script src="client.js"></script>`
     : `<script src="bundle.js"></script>`;
 
@@ -36,7 +37,11 @@ const template = function(initialState = {}, content = '') {
   </head>
   
   <body>
-    <div id="root">${content}</div>
+    <div id="root">
+      <div id="gallery-app">${content_one}</div>
+      SOME OTHER THINGS GO HERE, LIKE OTHER APPS
+      <div id="related-listings-app">${content_two}</div>
+    </div>
   
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"></script>
@@ -77,13 +82,20 @@ app.get('/room/:id', function(req, res) {
         if (relatedListings.length === related.length) {
           const store = createStore(rootReducer, { room, relatedListings });
           const initialState = store.getState();
-          const content = renderToString(
+
+          const content_one = renderToString(
             <Provider store={store}>
-              <App />
+              <Gallery />
+            </Provider>
+          );
+
+          const content_two = renderToString(
+            <Provider store={store}>
+              <RelatedListings />
             </Provider>
           );
       
-          const html = template(initialState, content);
+          const html = template(initialState, content_one, content_two);
           res.status(200).send(html);
         }
       })
