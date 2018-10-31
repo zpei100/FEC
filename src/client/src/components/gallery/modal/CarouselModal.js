@@ -17,7 +17,7 @@ class CarouselModal extends Component {
     this.state = {
       animating: false,
       animationDuration: 200,
-      carouselWidth: window.innerWidth > 1036 ? 1036 : window.innerWidth
+      carouselWidth: 1036
     };
   }
 
@@ -155,20 +155,6 @@ class CarouselModal extends Component {
         `${this.state.animationDuration}ms`
       );
       this.toggleActiveCaption();
-      // $('.carousel-arrows').on('click', function(e) {
-
-      //have not figured out a way to disable the arrow keys yet. If the fade animation of the slides take longer than 200ms, and the user clicks the arrows too quickly in succession, the shown slider and the caption image will not match;
-
-      // $(this).attr('disabled', true)
-      // console.log('show this')
-      // var _this = this;
-      // $(this).attr('disabled', true);
-      // console.log('arrows should be disabled: ', this)
-      // setTimeout(function() {
-      //   $(_this).removeAttr('disabled');
-      //   console.log('button is being enabled');
-      // }, component.state.animationDuration)
-      // })
     });
   }
 

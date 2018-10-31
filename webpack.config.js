@@ -3,10 +3,13 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: './src/client/src/index.js',
+  entry: {
+    index: './src/client/src/index.js',
+    client: './src/client/src/client.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     rules: [

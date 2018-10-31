@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import RoomCard from './RoomCard';
 import Arrow from './Arrow';
 
-const RelatedListings = function({relatedListings}) {
+const RelatedListings = function({ relatedListings }) {
   const settings = {
     infinite: false,
     slidesToScroll: 1,
@@ -26,27 +26,31 @@ const RelatedListings = function({relatedListings}) {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1
         }
       }
     ],
     nextArrow: <Arrow direction="+" />,
-    prevArrow: <Arrow direction="-" />,
+    prevArrow: <Arrow direction="-" />
   };
 
-  return (
+  return relatedListings.length > 0 ? (
     <div className="container">
       <Slider {...settings}>
-        {relatedListings.map(room => <RoomCard key={room.id} {...room} />)}
+        {relatedListings.map(room => (
+          <RoomCard key={room.id} {...room} />
+        ))}
       </Slider>
     </div>
+  ) : (
+    ''
   );
-}
- 
+};
+
 const mapStateToProps = function(state) {
   return {
     relatedListings: state.relatedListings
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(RelatedListings);

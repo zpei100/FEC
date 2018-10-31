@@ -1,7 +1,4 @@
-const { Room } = require('./schema');
-
-const dummyImageUrl =
-  'https://st.hzcdn.com/fimgs/e6b10d680980a41a_8368-w521-h304-b0-p0--traditional-family-room.jpg';
+const { Room, User } = require('./schema');
 
 const data = {
   type: ['ENTIRE CONDOMINIUM', 'ENTIRE APARTMENT', 'ENTIRE VILLA'],
@@ -60,3 +57,10 @@ for (var i = 0; i < size; i++) {
     imgs
   }).save();
 }
+
+new User({
+  id: 15,
+  username: 'Adam',
+  email: 'adam@gmail.com',
+  favorites: [1, 5, 8, 13, 28, 29, 47]
+}).save();

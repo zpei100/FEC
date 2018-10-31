@@ -1,27 +1,30 @@
 import React from 'react';
 
-export const save = (
-  <svg
-    viewBox="0 0 32 32"
-    fill="#484848"
-    fillOpacity="0"
-    stroke="#484848"
-    strokeWidth="1.5"
-    focusable="false"
-    aria-hidden="true"
-    role="presentation"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    style={{
-      height: '15px',
-      width: '15px',
-      display: 'block',
-      overflow: 'visible'
-    }}
-  >
-    <path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38" />
-  </svg>
-);
+export const save = function(favorite, onClick) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      fill={favorite ? "red" : "#484848"}
+      fillOpacity="0"
+      stroke="#484848"
+      strokeWidth="1.5"
+      focusable="false"
+      aria-hidden="true"
+      role="presentation"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      onClick={onClick}
+      style={{
+        height: '15px',
+        width: '15px',
+        display: 'block',
+        overflow: 'visible'
+      }}
+    >
+      <path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38" />
+    </svg>
+  );
+};
 
 export const share = (
   <svg
@@ -104,28 +107,32 @@ export const prev_arrow = (
   </svg>
 );
 
-export const heart = (
-  <svg
-    viewBox="20 0 25 25"
-    fill="#484848"
-    fillOpacity="0.5"
-    stroke="#ffffff"
-    strokeWidth="2.5"
-    focusable="false"
-    aria-label="Add listing to a list"
-    role="img"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    style={{
-      height: `28px`,
-      width: `28px`,
-      display: `block`,
-      overflow: `visible`,
-      position: 'absolute',
-      right: 0
-    }}
-    className="m-2"
-  >
-    <path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38" />
-  </svg>
-);
+export const heart = function(favorite, onClick) {
+  return (
+    <svg
+      viewBox="20 0 25 25"
+      fill={favorite ? 'red' : '#484848'}
+      onClick={onClick}
+      fillOpacity="0.5"
+      stroke="#ffffff"
+      strokeWidth="2.5"
+      focusable="false"
+      aria-label="Add listing to a list"
+      role="img"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{
+        height: `28px`,
+        width: `28px`,
+        display: `block`,
+        overflow: `visible`,
+        position: 'absolute',
+        right: 0,
+        cursor: 'pointer'
+      }}
+      className="m-2 favorite-icon"
+    >
+      <path d="m23.99 2.75c-.3 0-.6.02-.9.05-1.14.13-2.29.51-3.41 1.14-1.23.68-2.41 1.62-3.69 2.94-1.28-1.32-2.46-2.25-3.69-2.94-1.12-.62-2.27-1-3.41-1.14a7.96 7.96 0 0 0 -.9-.05c-1.88 0-7.26 1.54-7.26 8.38 0 7.86 12.24 16.33 14.69 17.95a1 1 0 0 0 1.11 0c2.45-1.62 14.69-10.09 14.69-17.95 0-6.84-5.37-8.38-7.26-8.38" />
+    </svg>
+  );
+};
