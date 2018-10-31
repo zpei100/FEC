@@ -2,7 +2,9 @@
   "name": "FEC_production",
   "version": "1.0.0",
   "main": "index.js",
-  "jest": "jest-puppeteer",
+  "jest": {
+    "preset": "jest-puppeteer"
+  },
   "scripts": {
     "build": "webpack",
     "watch": "webpack -w",
