@@ -17,7 +17,7 @@ class CarouselModal extends Component {
     this.state = {
       animating: false,
       animationDuration: 200,
-      carouselWidth: window.innerWidth > 1036 ? 1036 : window.innerWidth
+      carouselWidth: 1036
     };
   }
 
