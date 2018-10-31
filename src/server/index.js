@@ -90,10 +90,19 @@ app.post('/updateFavorites', function(req, res) {
 
   User.find({id: userId}).then(users => {
     let currentFavorites = users[0].favorites;
+
+    console.log('id of the room that has triggered favorites: ', id);
+    console.log('the list of current favorites', currentFavorites);
+
     const len = currentFavorites.length;
     currentFavorites = currentFavorites.filter(num => num !== id);
-    if (currentFavorites.length !== len) currentFavorites.push(id);
+    if (currentFavorites.length === len) currentFavorites.push(id);
+
+    console.log('the list of favorites after filtering', currentFavorites)
+    console.log('favorites are about to be saved')
+
     User.findOneAndUpdate({id: userId}, {favorites: currentFavorites}).then(result => {
+      console.log('the result that is returned from findOneAndUpdate', result.favorites)
       res.status(200).send(result.favorites);
     })
   })
