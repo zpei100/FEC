@@ -83,7 +83,7 @@ app.get('/room/:id', function(req, res) {
           );
       
           const html = template(initialState, content);
-          res.send(html);
+          res.status(200).send(html);
         }
       })
     });
