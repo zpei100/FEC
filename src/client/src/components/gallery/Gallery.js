@@ -22,11 +22,14 @@ const Gallery = function({ room: {imgs} }) {
         <ViewPhotos />
       </div>
 
-      {imgs.slice(0, 5).map((img, idx) => (
+      {imgs ? imgs.slice(0, 5).map((img, idx) => (
         <div key={idx} className={`img${idx} gallery-div border border-dark`}>
           <GalleryImage idx={idx} img={img} />
         </div>
-      ))}
+      ))
+      :
+      ""
+      }
     </div>
   );
 };

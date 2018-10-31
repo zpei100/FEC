@@ -15,7 +15,7 @@ import rootReducer from '../client/src/reducers/rootReducer';
 //need to webpack two different files
 const template = function(initialState = {}, content = '') {
   const scripts = content
-    ? `<script>window.__initialState__ = ${initialState}</script><script src="client.js"></script>`
+    ? `<script>window.__initialState__ = ${JSON.stringify(initialState)}</script><script src="client.js"></script>`
     : `<script src="bundle.js"></script>`;
 
   const html = `
@@ -31,6 +31,7 @@ const template = function(initialState = {}, content = '') {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
       crossorigin="anonymous">
     <title>FEC</title>
+    <base href="/" target="_blank">
   </head>
   
   <body>
@@ -63,24 +64,30 @@ app.use(express.static(path.resolve(__dirname, '../../dist')));
 app.get('/room/:id', function(req, res) {
 
   const id = parseInt(req.params.id);
-  console.log(id);
   Room.find({ id }).then(rooms => {
     const room = rooms[0];
-    const store = createStore(rootReducer, { room });
-    const initialState = store.getState();
 
-    const content = renderToString(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
+    let relatedListings = [];
+    const related = room.related;
 
-    const html = template(initialState, content);
-
-    res.send(html);
-  });
-  //templating needed to inject roomid into html somehow, for now, front end sends get request with id to
-  //to get data; fix later !!!!!!
+    related.forEach((id, idx, related) => {
+      Room.find({ id }).then(rooms => {
+        relatedListings.push(rooms[0])
+        if (relatedListings.length === related.length) {
+          const store = createStore(rootReducer, { room, relatedListings });
+          const initialState = store.getState();
+          const content = renderToString(
+            <Provider store={store}>
+              <App />
+            </Provider>
+          );
+      
+          const html = template(initialState, content);
+          res.send(html);
+        }
+      })
+    });
+  })
 });
 
 app.listen(4000, function() {

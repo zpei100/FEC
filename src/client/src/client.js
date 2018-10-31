@@ -27,20 +27,6 @@ import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initia
     document.getElementById('root')
   );
 
-  var rooms = [];
-  console.log(store.getState())
-  
-  store.getState().room.related.forEach((id, idx, related) => {
-    axios.get(`http://localhost:4000/room/${id}`).then(({ data: room }) => {
-      rooms.push(room);
-      if (rooms.length === related.length)
-        store.dispatch({
-          type: 'UPDATE_RELATED_LISTINGS',
-          payload: rooms
-        });
-    });
-  });
-
   $(document).ready(function() {
     const $galleryImages = $('.gallery img');
     const $fourthImage = $('.img4');
