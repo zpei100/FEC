@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import path from 'path';
 import session from 'express-session';
+import compression from 'compression';
 
 import React from 'react';
 import thunk from 'redux-thunk';
@@ -14,6 +15,7 @@ import { renderToString } from 'react-dom/server';
 import rootReducer from '../client/src/reducers/rootReducer';
 import Gallery from '../client/src/components/gallery/Gallery';
 import RelatedListings from '../client/src/components/carousel/RelatedListings';
+
 
 const template = function(
   initialState = {},
@@ -70,6 +72,10 @@ const template = function(
 
 const app = express();
 
+app.use(compression());
+app.use(bodyParser());
+app.use(cors());
+app.use(express.static(path.resolve(__dirname, '../../dist')));
 app.use(
   session({
     secret: 'password',
@@ -77,10 +83,6 @@ app.use(
     resave: false
   })
 );
-
-app.use(bodyParser());
-app.use(cors());
-app.use(express.static(path.resolve(__dirname, '../../dist')));
 
 app.post('/updateFavorites', function(req, res) {
 
@@ -96,7 +98,7 @@ app.post('/updateFavorites', function(req, res) {
 
     User.findOneAndUpdate({id: userId}, {favorites: currentFavorites}).then(result => {
       res.status(200).send(result.favorites);
-    })
+    }).catch(() => res.status(404));
   })
 })
 
@@ -104,43 +106,47 @@ app.get('/rooms/:id', function(req, res) {
   //id defaults to 15 for development environment;
   const userId = req.session.user ? req.session.user : 15;
 
-  const id = parseInt(req.params.id);
-  Room.find({ id }).then(rooms => {
-    const room = rooms[0];
+  try {
+    const id = parseInt(req.params.id);
+    if (typeof id !== 'number') throw new Error('id invalid');
 
-    let relatedListings = [];
-    const related = room.related;
+    Room.find({ id }).then(rooms => {
 
-    related.forEach((id, idx, related) => {
-      Room.find({ id }).then(rooms => {
-        relatedListings.push(rooms[0]);
-        if (relatedListings.length === related.length) {
-          User.find({ id: userId }).then(users => {
-            const { favorites, id, username } = users[0];
-            const user = {favorites, id, username }
-
-            const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
-            const initialState = store.getState();
-
-            const content_one = renderToString(
-              <Provider store={store}>
-                <Gallery />
-              </Provider>
-            );
-
-            const content_two = renderToString(
-              <Provider store={store}>
-                <RelatedListings />
-              </Provider>
-            );
-
-            const html = template(initialState, content_one, content_two);
-            res.status(200).send(html);
-          });
-        }
+      let relatedListings = [];
+      const room = rooms[0];
+      const related = room.related;
+  
+      related.forEach((id, idx, related) => {
+        Room.find({ id }).then(rooms => {
+          relatedListings.push(rooms[0]);
+          if (relatedListings.length === related.length) {
+            User.find({ id: userId }).then(users => {
+              const { favorites, id, username } = users[0];
+              const user = {favorites, id, username }
+              const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
+              const initialState = store.getState();
+              const content_one = renderToString(
+                <Provider store={store}>
+                  <Gallery />
+                </Provider>
+              );
+  
+              const content_two = renderToString(
+                <Provider store={store}>
+                  <RelatedListings />
+                </Provider>
+              );
+  
+              const html = template(initialState, content_one, content_two);
+              res.status(200).send(html);
+            }).catch(() => res.status(404));
+          }
+        }).catch(() => res.status(404));;
       });
     });
-  });
+  } catch(err) {
+    res.status(404)
+  }
 });
 
 //routes to initialize csr client
@@ -151,7 +157,7 @@ app.get('/csr/getUser', function(req, res) {
   User.find({ id: userId }).then(users => {
     const user = users[0];
     res.send(user);
-  })
+  }).catch(() => res.status(404));
 })
 
 app.get('/csr/:id', function(req, res) {
@@ -159,11 +165,11 @@ app.get('/csr/:id', function(req, res) {
   Room.find({ id }).then(rooms => {
     const room = rooms[0];
     res.send(room);
-  })
+  }).catch(() => res.status(404));
 })
 
 const port = process.env.PORT || 3001;
 
-app.listen(por, function() {
+app.listen(port, function() {
   console.log(`server up on port ${port}`);
 });
