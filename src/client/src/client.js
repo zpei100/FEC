@@ -31,8 +31,6 @@ import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initia
     document.getElementById('gallery-app')
   );
 
-  
-
   $(document).ready(function() {
     const $galleryImages = $('.gallery img');
     const $fourthImage = $('.img4');
