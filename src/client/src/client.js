@@ -5,10 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import './lib/gallery_styles.css';
-import './lib/modal_styles.css';
-import './lib/rating_styles.css';
-
 import rootReducer from './reducers/rootReducer';
 import RelatedListings from '../src/components/carousel/RelatedListings'
 import Gallery from "../src/components/gallery/Gallery";

@@ -19,8 +19,8 @@ import {
 const roomId = 25
 
 
-axios.get(`http://localhost:4000/csr/${roomId}`).then(({ data: room }) => {
-  axios.get('http://localhost:4000/csr/getUser').then(({ data: user }) => {
+axios.get(`http://localhost:3001/csr/${roomId}`).then(({ data: room }) => {
+  axios.get('http://localhost:3001/csr/getUser').then(({ data: user }) => {
     const {favorites, id, username} = user;
     const store = createStore(rootReducer, {room, user: {favorites, id, username}}, applyMiddleware(thunk));
 
@@ -40,7 +40,7 @@ axios.get(`http://localhost:4000/csr/${roomId}`).then(({ data: room }) => {
 
     var rooms = [];
     room.related.forEach((id, idx, related) => {
-      axios.get(`http://localhost:4000/csr/${id}`).then(({ data: room }) => {
+      axios.get(`http://localhost:3001/csr/${id}`).then(({ data: room }) => {
         rooms.push(room);
         if (rooms.length === related.length)
           store.dispatch({

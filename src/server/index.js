@@ -1,21 +1,20 @@
 import express from 'express';
-import { Room, User } from './db/schema';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import path from 'path';
+import session from 'express-session';
 
 import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import { Room, User } from './db/schema';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
-import session from 'express-session';
 
 import rootReducer from '../client/src/reducers/rootReducer';
 import Gallery from '../client/src/components/gallery/Gallery';
 import RelatedListings from '../client/src/components/carousel/RelatedListings';
 
-//need to webpack two different files
 const template = function(
   initialState = {},
   content_one = '',
@@ -91,41 +90,17 @@ app.post('/updateFavorites', function(req, res) {
   User.find({id: userId}).then(users => {
     let currentFavorites = users[0].favorites;
 
-    console.log('id of the room that has triggered favorites: ', id);
-    console.log('the list of current favorites', currentFavorites);
-
     const len = currentFavorites.length;
     currentFavorites = currentFavorites.filter(num => num !== id);
     if (currentFavorites.length === len) currentFavorites.push(id);
 
-    console.log('the list of favorites after filtering', currentFavorites)
-    console.log('favorites are about to be saved')
-
     User.findOneAndUpdate({id: userId}, {favorites: currentFavorites}).then(result => {
-      console.log('the result that is returned from findOneAndUpdate', result.favorites)
       res.status(200).send(result.favorites);
     })
   })
 })
 
-app.get('/csr/getUser', function(req, res) {
-  const userId = req.session.user ? req.session.user : 15;
-
-  User.find({ id: userId }).then(users => {
-    const user = users[0];
-    res.send(user);
-  })
-})
-
-app.get('/csr/:id', function(req, res) {
-  const id = parseInt(req.params.id);
-  Room.find({ id }).then(rooms => {
-    const room = rooms[0];
-    res.send(room);
-  })
-})
-
-app.get('/room/:id', function(req, res) {
+app.get('/rooms/:id', function(req, res) {
   //id defaults to 15 for development environment;
   const userId = req.session.user ? req.session.user : 15;
 
@@ -168,6 +143,27 @@ app.get('/room/:id', function(req, res) {
   });
 });
 
-app.listen(4000, function() {
-  console.log('port is up on port 4000');
+//routes to initialize csr client
+
+app.get('/csr/getUser', function(req, res) {
+  const userId = req.session.user ? req.session.user : 15;
+
+  User.find({ id: userId }).then(users => {
+    const user = users[0];
+    res.send(user);
+  })
+})
+
+app.get('/csr/:id', function(req, res) {
+  const id = parseInt(req.params.id);
+  Room.find({ id }).then(rooms => {
+    const room = rooms[0];
+    res.send(room);
+  })
+})
+
+const port = process.env.PORT || 3001;
+
+app.listen(por, function() {
+  console.log(`server up on port ${port}`);
 });

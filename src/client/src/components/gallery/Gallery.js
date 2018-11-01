@@ -13,7 +13,7 @@ const Gallery = function({ room: {imgs}, room, user, updateFavorites}) {
       <CarouselModal />
 
       <div className="button-group-top button mx-4 my-4 d-flex">
-        <TopButton type="share" />
+        <TopButton type="share" user={user} updateFavorites={updateFavorites} room={room}/>
         <TopButton type="save" user={user} updateFavorites={updateFavorites} room={room}/>
       </div>
 
