@@ -22,6 +22,7 @@ const CSR = {
         test: /\.css$/,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader']
+       
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -36,7 +37,7 @@ const CSR = {
       inject: 'body'
     })
   ],
-  devtool: "source-map"
+  devtool: 'source-map'
 };
 
 const SSR = {
@@ -66,7 +67,7 @@ const SSR = {
       }
     ]
   },
-  devtool: "source-map"
+  devtool: 'source-map'
 };
 
-module.exports = [SSR, CSR]
+module.exports = [SSR, CSR];

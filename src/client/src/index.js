@@ -6,9 +6,7 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 import thunk from 'redux-thunk';
 
-import rootReducer from './reducers/rootReducer';
-import Gallery from "../src/components/gallery/Gallery";
-import RelatedListings from "../src/components/carousel/RelatedListings";
+import '../src/lib/styles.css';
 
 import {
   floatButtonWhenEntering,
