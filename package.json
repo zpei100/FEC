@@ -12,8 +12,7 @@
     "server": "nodemon src/server/index.js",
     "start": "./node_modules/.bin/babel-node src/server/index.js",
     "test": "jest",
-    "build": "npm install && cd src/server && npm install && cd ../.. && cd src/client && npm install && cd ../.. && webpack && npm start",
-    "postinstall": "npm run build"
+    "build": "npm install && cd src/server && npm install && cd ../.. && cd src/client && npm install && cd ../.. && webpack && npm start"
   },
   "author": "",
   "license": "ISC",
