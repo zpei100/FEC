@@ -64,16 +64,11 @@ app.get('/getRoom/:id', function(req, res) {
   getRoomAndUserInfo(req).then(({ room, relatedListings, user}) => {
     const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
     const initialState = store.getState();
-
-    console.log('created store');
-
     const galleryHtml = renderToString(
       <Provider store={store}>
         <Gallery />
       </Provider>
     );
-
-    console.log('created gallery html')
 
     const relatedListingsHtml = renderToString(
       <Provider store={store}>
@@ -81,25 +76,17 @@ app.get('/getRoom/:id', function(req, res) {
       </Provider>
     );
 
-    console.log('created related listings html')
-
     const navHtml = renderToString(
       <Provider store={store}>
         <Nav />
       </Provider>
     );
 
-      console.log('created nav ');
-
     const descriptionHtml = renderToString(
       <Provider store={store}>
         <Description />
       </Provider>
     );
-
-
-
-    console.log('res about to be sent');
 
     res.status(200).send({initialState, navHtml, descriptionHtml, galleryHtml, relatedListingsHtml});
   }).catch(() => res.status(404));
