@@ -1,27 +1,25 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
 import axios from 'axios';
 import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 
-import '../src/lib/styles.css';
+import { floatButtonWhenEntering, highlightImageOnHover } from './helpers/initialize';
 
-import {
-  floatButtonWhenEntering,
-  highlightImageOnHover
-} from './helpers/initialize';
+const pathname = window.location.pathname;
+const roomId = parseInt(pathname.slice(7));
 
-// CHANGE THIS NUMBER TO BE DYNAMIC, DEPENDING ON THE URL YOU ARE USING TO MAKE THE GET REQUEST
-const roomId = 25
-const host = 'https://vast-fortress-96596.herokuapp.com/'
+if (pathname.startsWith('/rooms/') && typeof id === 'number') {
+    
 
+  //where the server, that serves this application lives;
+  const host = 'https://vast-fortress-96596.herokuapp.com/';
 
-axios.get(`${host}${roomId}`).then(({ data: room }) => {
-  axios.get(`${host}/csr/getUser`).then(({ data: user }) => {
-    const {favorites, id, username} = user;
-    const store = createStore(rootReducer, {room, user: {favorites, id, username}}, applyMiddleware(thunk));
+  axios.get(`${host}csr/${roomId}`).then(({ data: room, user, relatedListings }) => {
+    const store = createStore(rootReducer, {room, relatedListings, user}, applyMiddleware(thunk));
 
     ReactDOM.render(
       <Provider store={store}>
@@ -37,18 +35,6 @@ axios.get(`${host}${roomId}`).then(({ data: room }) => {
       document.getElementById('related-listings-app')
     );
 
-    var rooms = [];
-    room.related.forEach((id, idx, related) => {
-      axios.get(`${host}/csr/${id}`).then(({ data: room }) => {
-        rooms.push(room);
-        if (rooms.length === related.length)
-          store.dispatch({
-            type: 'UPDATE_RELATED_LISTINGS',
-            payload: rooms
-          });
-      });
-    });
-
     $(document).ready(function() {
       const $galleryImages = $('.gallery img');
       const $fourthImage = $('.img4');
@@ -58,5 +44,6 @@ axios.get(`${host}${roomId}`).then(({ data: room }) => {
       floatButtonWhenEntering($fourthImage);
       floatButtonWhenEntering($viewPhoto);
     });
-  });
-});
+  })
+}
+
