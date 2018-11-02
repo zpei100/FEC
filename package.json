@@ -6,7 +6,8 @@
     "preset": "jest-puppeteer"
   },
   "scripts": {
-    "webpack": "webpack && npm start",
+    "webpack": "webpack -p",
+    "webpack-local": "webpack && npm start",
     "populate": "node src/server/db/populate.js",
     "start": "./node_modules/.bin/babel-node src/server/index.js",
     "test": "jest",
