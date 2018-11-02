@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer';
 import RelatedListings from '../src/components/carousel/RelatedListings'
 import Gallery from "../src/components/gallery/Gallery";
+import Nav from "../src/components/navbar/Nav";
 
 import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initialize";
   
@@ -29,6 +30,13 @@ hydrate(
   </Provider>,
   document.getElementById('gallery-app')
 );
+
+hydrate(
+  <Provider store={store}>
+    <Nav />
+  </Provider>,
+  document.getElementById('nav-app')
+)
 
 $(document).ready(function() {
   const $galleryImages = $('.gallery img');

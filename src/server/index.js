@@ -15,6 +15,8 @@ import { Room, User } from './db/schema';
 import rootReducer from '../client/src/reducers/rootReducer';
 import Gallery from '../client/src/components/gallery/Gallery';
 import RelatedListings from '../client/src/components/carousel/RelatedListings';
+import Nav from '../client/src/components/navbar/Nav';
+
 import { getRoomAndUserInfo } from './handlers/getRoomAndUserInfo';
 
 const app = express();
@@ -73,7 +75,13 @@ app.get('/getRoom/:id', function(req, res) {
       </Provider>
     );
 
-    res.status(200).send({initialState, galleryHtml, relatedListingsHtml});
+    const navHtml = renderToString(
+      <Provider store={store}>
+        <Nav />
+      </Provider>
+    );
+
+    res.status(200).send({initialState, navHtml, galleryHtml, relatedListingsHtml});
   }).catch(() => res.status(404));
 })
 

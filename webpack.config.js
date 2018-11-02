@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   mode: 'production',
   entry: {
-    index: './src/client/src/index.js',
+    // index: './src/client/src/index.js',
     client: './src/client/src/client.js'
   },
   output: {
@@ -23,5 +23,6 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       }
     ]
-  }
+  },
+  devtool: 'source-map'
 };
