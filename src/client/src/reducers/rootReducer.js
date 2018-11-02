@@ -3,6 +3,7 @@ import changeActiveReducer from './changeActiveReducer'
 import updateRelatedListingsReducer from "./updateRelatedListingsReducer";
 import toggleModalReducer from './toggleModalReducer';
 import updateFavorites from './updateFavorites';
+import descriptionReducer from './descriptionReducer';
 
 const getRoom = function(state = {}, action) {
   switch (action.type) {
@@ -16,5 +17,6 @@ export default combineReducers({
   relatedListings: updateRelatedListingsReducer,
   showModal: toggleModalReducer,
   room: getRoom,
-  user: updateFavorites 
+  user: updateFavorites,
+  description: descriptionReducer
 })

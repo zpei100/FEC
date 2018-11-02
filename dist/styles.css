@@ -227,4 +227,8 @@
   color: rgb(166, 29, 85);
 }
 
-
+.description .highlight .active {
+  color: teal;
+  fill: teal;
+  font-weight: 300;
+}

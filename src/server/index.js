@@ -16,6 +16,7 @@ import rootReducer from '../client/src/reducers/rootReducer';
 import Gallery from '../client/src/components/gallery/Gallery';
 import RelatedListings from '../client/src/components/carousel/RelatedListings';
 import Nav from '../client/src/components/navbar/Nav';
+import Description from '../client/src/components/description/Description';
 
 import { getRoomAndUserInfo } from './handlers/getRoomAndUserInfo';
 
@@ -59,9 +60,12 @@ app.get('/csr/:id', function(req, res) {
 
 //code required to handle SSR. Sends back initial State to proxy;
 app.get('/getRoom/:id', function(req, res) {
+  
   getRoomAndUserInfo(req).then(({ room, relatedListings, user}) => {
     const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
     const initialState = store.getState();
+
+    console.log('created store');
 
     const galleryHtml = renderToString(
       <Provider store={store}>
@@ -69,11 +73,15 @@ app.get('/getRoom/:id', function(req, res) {
       </Provider>
     );
 
+    console.log('created gallery html')
+
     const relatedListingsHtml = renderToString(
       <Provider store={store}>
         <RelatedListings />
       </Provider>
     );
+
+    console.log('created related listings html')
 
     const navHtml = renderToString(
       <Provider store={store}>
@@ -81,7 +89,19 @@ app.get('/getRoom/:id', function(req, res) {
       </Provider>
     );
 
-    res.status(200).send({initialState, navHtml, galleryHtml, relatedListingsHtml});
+      console.log('created nav ');
+
+    const descriptionHtml = renderToString(
+      <Provider store={store}>
+        <Description />
+      </Provider>
+    );
+
+
+
+    console.log('res about to be sent');
+
+    res.status(200).send({initialState, navHtml, descriptionHtml, galleryHtml, relatedListingsHtml});
   }).catch(() => res.status(404));
 })
 

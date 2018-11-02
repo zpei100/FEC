@@ -9,6 +9,7 @@ import rootReducer from './reducers/rootReducer';
 import RelatedListings from '../src/components/carousel/RelatedListings'
 import Gallery from "../src/components/gallery/Gallery";
 import Nav from "../src/components/navbar/Nav";
+import Description from '../src/components/description/Description';
 
 import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initialize";
   
@@ -36,6 +37,13 @@ hydrate(
     <Nav />
   </Provider>,
   document.getElementById('nav-app')
+);
+
+hydrate(
+  <Provider store={store}>
+    <Description />
+  </Provider>,
+  document.getElementById('description-app')
 )
 
 $(document).ready(function() {
