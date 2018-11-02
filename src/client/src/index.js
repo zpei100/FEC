@@ -16,7 +16,7 @@ if (pathname.startsWith('/rooms/') && typeof id === 'number') {
     
 
   //where the server, that serves this application lives;
-  const host = 'https://vast-fortress-96596.herokuapp.com/';
+  const host = 'https://mysterious-earth-97891.herokuapp.com/';
 
   axios.get(`${host}csr/${roomId}`).then(({ data: room, user, relatedListings }) => {
     const store = createStore(rootReducer, {room, relatedListings, user}, applyMiddleware(thunk));
