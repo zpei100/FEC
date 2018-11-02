@@ -25,7 +25,7 @@ const randomlyPick = function(prop) {
   return data[prop][random(len)];
 };
 
-const size = 50;
+const size = 100;
 
 for (var i = 0; i < size; i++) {
   var roomData = {};

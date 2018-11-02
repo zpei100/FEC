@@ -19,7 +19,7 @@ const RoomCard = function ({type, tag, description, id, beds, price, rating, rev
       <div className="p-2">
         <div style={{ position: 'relative' }} className="container">
           {heart(favorite, onClick)}
-          <img style={{cursor: "pointer"}} className="m-auto w-100 h-auto" src={thumbNail} alt=""/>
+          <a target="_self" href={`${window.location.origin}/rooms/${id}`}><img style={{cursor: "pointer"}} className="m-auto w-100 h-auto" src={thumbNail} alt=""/></a>
         </div>
   
         <div style={{cursor: "pointer"}} className="mt-2 p-0" >
