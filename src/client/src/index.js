@@ -15,10 +15,11 @@ import {
 
 // CHANGE THIS NUMBER TO BE DYNAMIC, DEPENDING ON THE URL YOU ARE USING TO MAKE THE GET REQUEST
 const roomId = 25
+const host = 'https://vast-fortress-96596.herokuapp.com/'
 
 
-axios.get(`http://localhost:3001/csr/${roomId}`).then(({ data: room }) => {
-  axios.get('http://localhost:3001/csr/getUser').then(({ data: user }) => {
+axios.get(`${host}${roomId}`).then(({ data: room }) => {
+  axios.get(`${host}/csr/getUser`).then(({ data: user }) => {
     const {favorites, id, username} = user;
     const store = createStore(rootReducer, {room, user: {favorites, id, username}}, applyMiddleware(thunk));
 
@@ -38,7 +39,7 @@ axios.get(`http://localhost:3001/csr/${roomId}`).then(({ data: room }) => {
 
     var rooms = [];
     room.related.forEach((id, idx, related) => {
-      axios.get(`http://localhost:3001/csr/${id}`).then(({ data: room }) => {
+      axios.get(`${host}/csr/${id}`).then(({ data: room }) => {
         rooms.push(room);
         if (rooms.length === related.length)
           store.dispatch({

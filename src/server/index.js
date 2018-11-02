@@ -16,7 +16,6 @@ import rootReducer from '../client/src/reducers/rootReducer';
 import Gallery from '../client/src/components/gallery/Gallery';
 import RelatedListings from '../client/src/components/carousel/RelatedListings';
 
-
 const template = function(
   initialState = {},
   content_one = '',

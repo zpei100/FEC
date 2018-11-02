@@ -6,10 +6,9 @@
     "preset": "jest-puppeteer"
   },
   "scripts": {
-    "webpack": "webpack",
-    "watch": "webpack -w",
+    "webpack": "webpack -p",
     "populate": "node src/server/db/populate.js",
-    "server": "nodemon src/server/index.js",
+    "local-server": "nodemon src/server/index.js",
     "start": "./node_modules/.bin/babel-node src/server/index.js",
     "test": "jest",
     "build": "npm install && cd src/server && npm install && cd ../.. && cd src/client && npm install && cd ../.. && npm run webpack && npm start",
