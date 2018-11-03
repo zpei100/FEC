@@ -32,8 +32,8 @@ console.log('accessed!');
   //where the server, that serves this application lives;
   const host = 'https://mysterious-earth-97891.herokuapp.com/';
 
-  axios.get(`${host}csr/${roomId}`).then(({ data: room, user, relatedListings }) => {
-    const store = createStore(rootReducer, {room, relatedListings, user}, applyMiddleware(thunk));
+  axios.get(`${host}csr/${roomId}`).then(({ data: store }) => {
+    
 
     console.log('store is: ', store.getState())
 
