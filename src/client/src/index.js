@@ -1,45 +1,43 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import { Provider } from 'react-redux';
-import { floatButtonWhenEntering, highlightImageOnHover } from './helpers/initialize';
+import {
+  floatButtonWhenEntering,
+  highlightImageOnHover
+} from './helpers/initialize';
 import { createStore } from 'redux';
 
-import RelatedListings from "../src/components/carousel/RelatedListings";
-import Description from "../src/components/description/Description";
-import Gallery from "../src/components/gallery/Gallery";
-import Nav from "../src/components/navbar/Nav";
+import RelatedListings from '../src/components/carousel/RelatedListings';
+import Description from '../src/components/description/Description';
+import Gallery from '../src/components/gallery/Gallery';
+import Nav from '../src/components/navbar/Nav';
 
 import rootReducer from './reducers/rootReducer';
 
 const pathname = window.location.pathname;
 const roomId = parseInt(pathname.slice(7));
 
-console.log('index is read') 
+console.log('index is read');
 
-console.log('path name: ' , pathname)
+console.log('path name: ', pathname);
 if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
-
-console.log('accessed!');
-    
+  console.log('accessed!');
 
   //where the server, that serves this application lives;
   const host = 'http://mysterious-earth-97891.herokuapp.com/';
 
   ReactDOM.render(
-    <Provider store={store}>
-      <Nav />
-    </Provider>,
+    <Nav />,
+
     document.getElementById('nav-app')
   );
 
-  axios.get(`${host}csr/${roomId}`).then(({data}) => {
-
+  axios.get(`${host}csr/${roomId}`).then(({ data }) => {
     data = JSON.stringify(data);
     console.log('data : ', data);
-    console.log('store: ', data.getState())
+    console.log('store: ', data.getState());
 
     ReactDOM.render(
       <Provider store={store}>
@@ -71,6 +69,5 @@ console.log('accessed!');
       floatButtonWhenEntering($fourthImage);
       floatButtonWhenEntering($viewPhoto);
     });
-  })
+  });
 }
-
