@@ -28,6 +28,13 @@ console.log('accessed!');
   //where the server, that serves this application lives;
   const host = 'http://mysterious-earth-97891.herokuapp.com/';
 
+  ReactDOM.render(
+    <Provider store={store}>
+      <Nav />
+    </Provider>,
+    document.getElementById('nav-app')
+  );
+
   axios.get(`${host}csr/${roomId}`).then(({data}) => {
 
     data = JSON.stringify(data);
@@ -52,14 +59,7 @@ console.log('accessed!');
       <Provider store={store}>
         <Description />
       </Provider>,
-      document.getElementById('related-listings-app')
-    );
-
-    ReactDOM.render(
-      <Provider store={store}>
-        <Nav />
-      </Provider>,
-      document.getElementById('related-listings-app')
+      document.getElementById('description-app')
     );
 
     $(document).ready(function() {
