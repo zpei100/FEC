@@ -16,7 +16,7 @@ class CarouselModal extends Component {
 
     this.state = {
       animating: false,
-      animationDuration: 200,
+      animationDuration: 400,
       carouselWidth: 1036
     };
   }
@@ -38,6 +38,9 @@ class CarouselModal extends Component {
     var totalOffSet = $('#Captions ol')[0].offsetLeft;
 
     if (!this.state.animating) {
+
+      console.log('sliding !')
+
       var newActive;
       if (
         this.props.activeImage === allCaptionImages.length - 1 &&
@@ -93,12 +96,12 @@ class CarouselModal extends Component {
             }
           }
 
-          $('#Captions ol').animate({ marginLeft: `-=${move}px` }, 500);
+          $('#Captions ol').animate({ marginLeft: `-=${move}px` }, this.state.animationDuration);
 
           var _this = this;
           setTimeout(function() {
             _this.setState({ animating: false });
-          }, _this.state.animationDuration);
+          }, _this.state.animationDuration + 200);
         }
       );
     }
@@ -173,6 +176,7 @@ class CarouselModal extends Component {
         <Carousel
           carouselWidth={carouselWidth}
           handleCarouselTurn={this.handleCarouselTurn.bind(this)}
+          animationDuration={this.state.animationDuration}
         />
         <Captions
           carouselWidth={carouselWidth}

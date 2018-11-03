@@ -47,9 +47,10 @@
     "img0"
   }
 
-  .gallery-div img:not(.img0) {
+  .gallery-div:not(.img0) {
     display: none;
   }
+
   .hide-text {
     display: none;
   }
@@ -233,3 +234,6 @@
   font-weight: 300;
 }
 
+.a .disabled {
+  pointer-events:none
+}

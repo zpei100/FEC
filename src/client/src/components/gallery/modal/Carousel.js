@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Arrow from './Arrow';
 
-const Carousel = function({ room: { imgs }, carouselWidth, handleCarouselTurn }) {
+const Carousel = function({ room: { imgs }, carouselWidth, handleCarouselTurn, animationDuration }) {
   //need to make arrows shrink at width: 735 px;
   return (
     <div
@@ -31,8 +31,8 @@ const Carousel = function({ room: { imgs }, carouselWidth, handleCarouselTurn })
         ))}
       </div>
 
-      <Arrow type="prev" handleCarouselTurn={handleCarouselTurn} />
-      <Arrow type="next" handleCarouselTurn={handleCarouselTurn} />
+      <Arrow type="prev" handleCarouselTurn={handleCarouselTurn} animationDuration={animationDuration} />
+      <Arrow type="next" handleCarouselTurn={handleCarouselTurn} animationDuration={animationDuration} />
     </div>
   );
 };

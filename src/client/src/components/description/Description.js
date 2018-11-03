@@ -76,8 +76,8 @@ const Description = function({
               HOME HIGHLIGHTS
             </h5>
             <ul style={{ listStyleType: 'none' }} className="pl-0 list-group">
-              {highlights.map(highlight => (
-                <li className="card-text list-group-item border-0 pl-0">
+              {highlights.map((highlight, idx) => (
+                <li className="card-text list-group-item border-0 pl-0" key={idx}>
                   <div>{highlight}</div>
                   <div className="highlight d-inline-flex">
               
