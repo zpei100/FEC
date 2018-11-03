@@ -17,8 +17,15 @@ import Nav from "../src/components/navbar/Nav";
 const pathname = window.location.pathname;
 const roomId = parseInt(pathname.slice(7));
 
+console.log('index is read') 
+
+console.log('path name: ' , pathname)
 if (pathname.startsWith('/rooms/') && typeof id === 'number') {
+
+console.log('accessed!')
     
+
+
 
   //where the server, that serves this application lives;
   const host = 'https://mysterious-earth-97891.herokuapp.com/';

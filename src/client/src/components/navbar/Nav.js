@@ -19,8 +19,8 @@ class Nav extends Component {
 
         <ul className="navbar-nav d-flex flex-row justify-content-end">
           {['Become a host', 'Help', 'Sign up', 'Log in'].map(key => (
-            <li className="nav-item mx-3">
-              <a className="text-dark" href="#" key={key}>
+            <li className="nav-item mx-3" key={key}>
+              <a className="text-dark" href="#" >
                 {key}
               </a>
             </li>
