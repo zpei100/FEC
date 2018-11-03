@@ -12,7 +12,7 @@ import { floatButtonWhenEntering, highlightImageOnHover } from './helpers/initia
 import RelatedListings from "../src/components/carousel/RelatedListings";
 import Description from "../src/components/description/Description";
 import Gallery from "../src/components/gallery/Gallery";
-import Nav from "../src/components/navbar";
+import Nav from "../src/components/navbar/Nav";
 
 const pathname = window.location.pathname;
 const roomId = parseInt(pathname.slice(7));
