@@ -37,7 +37,8 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
 
   axios.get(`${host}csr/${roomId}`).then(({ data }) => {
 
-    console.log(`${host}csr/${roomId}`)
+    console.log(`${host}csr/${roomId}`);
+    console.log('room id is: ', roomId);
 
 
     data = JSON.stringify(data);
