@@ -14,6 +14,8 @@ import Description from "../src/components/description/Description";
 import Gallery from "../src/components/gallery/Gallery";
 import Nav from "../src/components/navbar/Nav";
 
+import rootReducer from './reducers/rootReducer';
+
 const pathname = window.location.pathname;
 const roomId = parseInt(pathname.slice(7));
 
