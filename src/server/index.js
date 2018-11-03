@@ -57,10 +57,8 @@ app.post('/updateFavorites', function(req, res) {
 app.get('/csr/:id', function(req, res) {
   getRoomAndUserInfo(req).then(({ room, relatedListings, user }) => {
     const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
-    res.send(store);
+    res.send(JSON.stringify(store));
   })
-    
- 
 })
 
 //code required to handle SSR. Sends back initial State to proxy;

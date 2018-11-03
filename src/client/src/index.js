@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import { Provider } from 'react-redux';
-
 import { floatButtonWhenEntering, highlightImageOnHover } from './helpers/initialize';
+import { createStore } from 'redux';
 
 import RelatedListings from "../src/components/carousel/RelatedListings";
 import Description from "../src/components/description/Description";
@@ -25,18 +25,14 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
 console.log('accessed!');
     
 
-
-
   //where the server, that serves this application lives;
   const host = 'http://mysterious-earth-97891.herokuapp.com/';
 
-  axios.get(`${host}csr/${roomId}`).then(response => {
+  axios.get(`${host}csr/${roomId}`).then(({data}) => {
 
-    console.log('response: ', response)
-
-    console.log('data ? ', response.data)
-
-    console.log('store is: ', response.data.getState())
+    data = JSON.stringify(data);
+    console.log('data : ', data);
+    console.log('store: ', data.getState())
 
     ReactDOM.render(
       <Provider store={store}>
