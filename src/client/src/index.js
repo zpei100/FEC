@@ -3,8 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import { floatButtonWhenEntering, highlightImageOnHover } from './helpers/initialize';
@@ -33,7 +31,8 @@ console.log('accessed!');
   const host = 'https://mysterious-earth-97891.herokuapp.com/';
 
   axios.get(`${host}csr/${roomId}`).then(({ data: store }) => {
-    
+      
+    console.log('store is???? : ', store)
 
     console.log('store is: ', store.getState())
 
