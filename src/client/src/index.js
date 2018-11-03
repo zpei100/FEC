@@ -30,11 +30,13 @@ console.log('accessed!');
   //where the server, that serves this application lives;
   const host = 'http://mysterious-earth-97891.herokuapp.com/';
 
-  axios.get(`${host}csr/${roomId}`).then(({ data: store }) => {
-    console.log('data ? ', data)
-    console.log('store is???? : ', store)
+  axios.get(`${host}csr/${roomId}`).then(response => {
 
-    console.log('store is: ', store.getState())
+    console.log('response: ', response)
+
+    console.log('data ? ', response.data)
+
+    console.log('store is: ', response.data.getState())
 
     ReactDOM.render(
       <Provider store={store}>
