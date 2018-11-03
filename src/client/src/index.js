@@ -20,7 +20,7 @@ const roomId = parseInt(pathname.slice(7));
 console.log('index is read') 
 
 console.log('path name: ' , pathname)
-if (pathname.startsWith('/rooms/') && typeof id === 'number') {
+if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
 
 console.log('accessed!')
     
