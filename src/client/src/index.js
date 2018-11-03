@@ -24,7 +24,7 @@ console.log('index is read')
 console.log('path name: ' , pathname)
 if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
 
-console.log('accessed!')
+console.log('accessed!');
     
 
 
@@ -34,6 +34,8 @@ console.log('accessed!')
 
   axios.get(`${host}csr/${roomId}`).then(({ data: room, user, relatedListings }) => {
     const store = createStore(rootReducer, {room, relatedListings, user}, applyMiddleware(thunk));
+
+    console.log('store is: ', store)
 
     ReactDOM.render(
       <Provider store={store}>
