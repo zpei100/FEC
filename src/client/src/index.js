@@ -34,6 +34,8 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
     document.getElementById('nav-app')
   );
 
+  console.log('this part is reached . about to axios call')
+
   axios.get(`${host}csr/${roomId}`).then(({ data }) => {
     data = JSON.stringify(data);
     console.log('data : ', data);
