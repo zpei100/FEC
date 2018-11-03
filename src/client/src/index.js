@@ -28,7 +28,7 @@ console.log('accessed!');
 
 
   //where the server, that serves this application lives;
-  const host = 'https://mysterious-earth-97891.herokuapp.com/';
+  const host = 'http://mysterious-earth-97891.herokuapp.com/';
 
   axios.get(`${host}csr/${roomId}`).then(({ data: store }) => {
       
