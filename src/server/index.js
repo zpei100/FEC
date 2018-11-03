@@ -68,6 +68,9 @@ app.get('/getRoom/:id', function(req, res) {
   
   getRoomAndUserInfo(req).then(({ room, relatedListings, user}) => {
     const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
+
+    console.log(store);
+
     const initialState = store.getState();
     const galleryHtml = renderToString(
       <Provider store={store}>

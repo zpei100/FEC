@@ -31,7 +31,7 @@ console.log('accessed!');
   const host = 'http://mysterious-earth-97891.herokuapp.com/';
 
   axios.get(`${host}csr/${roomId}`).then(({ data: store }) => {
-      
+    console.log('data ? ', data)
     console.log('store is???? : ', store)
 
     console.log('store is: ', store.getState())
