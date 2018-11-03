@@ -56,14 +56,13 @@ app.post('/updateFavorites', function(req, res) {
 //initial render handlers for CSR;
 app.get('/csr/:id', function(req, res) {
   getRoomAndUserInfo(req).then(({ room, relatedListings, user }) => {
-    const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
-    res.send(JSON.stringify(store));
+
+    res.send({room, relatedListings, user});
   })
 })
 
 //code required to handle SSR. Sends back initial State to proxy;
 app.get('/getRoom/:id', function(req, res) {
-  
   getRoomAndUserInfo(req).then(({ room, relatedListings, user}) => {
     const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
 

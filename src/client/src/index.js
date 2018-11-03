@@ -7,7 +7,10 @@ import {
   floatButtonWhenEntering,
   highlightImageOnHover
 } from './helpers/initialize';
-import { createStore } from 'redux';
+
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
 
 import RelatedListings from '../src/components/carousel/RelatedListings';
 import Description from '../src/components/description/Description';
@@ -19,13 +22,10 @@ import rootReducer from './reducers/rootReducer';
 const pathname = window.location.pathname;
 const roomId = parseInt(pathname.slice(7));
 
-console.log('index is read');
 
-console.log('path name: ', pathname);
 if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
   console.log('accessed!');
 
-  //where the server, that serves this application lives;
   const host = 'http://mysterious-earth-97891.herokuapp.com/';
 
   ReactDOM.render(
@@ -36,7 +36,8 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
   console.log('this part is reached . about to axios call')
 
   axios.get(`${host}csr/${roomId}`).then(({ data }) => {
-
+    const { room, relatedListings, user } = data;
+    const store = createStore(rootReducer, {room, relatedListings, user}, applyMiddleware(thunk) )
     console.log(`${host}csr/${roomId}`);
     console.log('room id is: ', roomId);
 
