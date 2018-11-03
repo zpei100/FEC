@@ -4,7 +4,9 @@ import { save, share } from '../../lib/svg';
 
 export default function ({ type, updateFavorites, room, user }) {
 
-  if (room && user.favorites.length > 0) {
+  console.log('user object', user)
+
+  if (room && user.favorites) {
     const favorite = user.favorites.includes(room.id);
     const onClick = function() {
       updateFavorites(room.id);
