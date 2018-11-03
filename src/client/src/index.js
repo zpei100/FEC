@@ -30,13 +30,16 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
 
   ReactDOM.render(
     <Nav />,
-
     document.getElementById('nav-app')
   );
 
   console.log('this part is reached . about to axios call')
 
   axios.get(`${host}csr/${roomId}`).then(({ data }) => {
+
+    console.log(`${host}csr/${roomId}`)
+
+
     data = JSON.stringify(data);
     console.log('data : ', data);
     console.log('store: ', data.getState());
