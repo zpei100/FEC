@@ -190,17 +190,17 @@
     height: 30px;
     width: 30px;
   }
-}
+};
 
 #Captions li:not(.active) img {
   filter: brightness(50%)
-}
+};
 
 .star-o {
   color: gray;
   position: relative;
   margin: -2px;
-}
+};
 
 .half-teal-star {
   position: absolute;
@@ -208,7 +208,7 @@
   width: 5.7px;
   color: teal;
   overflow: hidden;
-}
+};
 
 .half-purple-star {
   position: absolute;
@@ -216,24 +216,28 @@
   width: 5.7px;
   color: rgb(166, 29, 85);
   overflow: hidden;
-}
+};
 
 .teal-star {
   position: relative;
   color: teal;
-}
+};
 
 .purple-star {
   position: relative;
   color: rgb(166, 29, 85);
-}
+};
 
 .description .highlight .active {
   color: teal;
   fill: teal;
   font-weight: 300;
-}
+};
 
 .a .disabled {
   pointer-events:none
-}
+};
+
+#booker-app {
+  position: relateive!important
+};

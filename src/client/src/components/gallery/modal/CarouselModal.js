@@ -39,8 +39,6 @@ class CarouselModal extends Component {
 
     if (!this.state.animating) {
 
-      console.log('sliding !')
-
       var newActive;
       if (
         this.props.activeImage === allCaptionImages.length - 1 &&

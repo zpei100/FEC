@@ -23,14 +23,14 @@ const Description = function({
 }) {
   return (
     <div
-      className="container-fluid col-7 mt-3 description"
+      className="d-flex mt-3 description justify-content-end"
     >
-      <div className="col-7 justify-self-end">
+      <div className="col-8">
         <div className="small">{type}</div>
         <div className="row d-flex justify-content-between">
           <div className="mt-2 col-8">
             <div
-              className="font-weight-bold"
+              className="font-weightbold"
               style={{ fontSize: '1.8rem', fontWeight: '700' }}
             >
               {title}

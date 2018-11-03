@@ -28,23 +28,11 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
 
   const host = 'http://mysterious-earth-97891.herokuapp.com/';
 
-  ReactDOM.render(
-    <Nav />,
-    document.getElementById('nav-app')
-  );
-
-  console.log('this part is reached . about to axios call')
-
   axios.get(`${host}csr/${roomId}`).then(({ data }) => {
     const { room, relatedListings, user } = data;
     const store = createStore(rootReducer, {room, relatedListings, user}, applyMiddleware(thunk) )
-    console.log(`${host}csr/${roomId}`);
-    console.log('room id is: ', roomId);
-
 
     data = JSON.stringify(store);
-    console.log('data : ', store);
-    console.log('store: ', store.getState());
 
     ReactDOM.render(
       <Provider store={store}>
@@ -65,6 +53,11 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
         <Description />
       </Provider>,
       document.getElementById('description-app')
+    );
+
+    ReactDOM.render(
+      <Nav />,
+      document.getElementById('nav-app')
     );
 
     $(document).ready(function() {
