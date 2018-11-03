@@ -25,7 +25,7 @@ const Description = function({
     <div
       className="d-flex mt-3 description justify-content-end"
     >
-      <div className="col-8">
+      <div className="col-6">
         <div className="small">{type}</div>
         <div className="row d-flex justify-content-between">
           <div className="mt-2 col-8">
