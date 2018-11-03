@@ -35,7 +35,7 @@ console.log('accessed!');
   axios.get(`${host}csr/${roomId}`).then(({ data: room, user, relatedListings }) => {
     const store = createStore(rootReducer, {room, relatedListings, user}, applyMiddleware(thunk));
 
-    console.log('store is: ', store)
+    console.log('store is: ', store.getState())
 
     ReactDOM.render(
       <Provider store={store}>
