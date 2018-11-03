@@ -42,9 +42,9 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
     console.log('room id is: ', roomId);
 
 
-    data = JSON.stringify(data);
-    console.log('data : ', data);
-    console.log('store: ', data.getState());
+    data = JSON.stringify(store);
+    console.log('data : ', store);
+    console.log('store: ', store.getState());
 
     ReactDOM.render(
       <Provider store={store}>
