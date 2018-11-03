@@ -9,6 +9,11 @@ import { Provider } from 'react-redux';
 
 import { floatButtonWhenEntering, highlightImageOnHover } from './helpers/initialize';
 
+import RelatedListings from "../src/components/carousel/RelatedListings";
+import Description from "../src/components/description/Description";
+import Gallery from "../src/components/gallery/Gallery";
+import Nav from "../src/components/navbar";
+
 const pathname = window.location.pathname;
 const roomId = parseInt(pathname.slice(7));
 
@@ -31,6 +36,20 @@ if (pathname.startsWith('/rooms/') && typeof id === 'number') {
     ReactDOM.render(
       <Provider store={store}>
         <RelatedListings />
+      </Provider>,
+      document.getElementById('related-listings-app')
+    );
+
+    ReactDOM.render(
+      <Provider store={store}>
+        <Description />
+      </Provider>,
+      document.getElementById('related-listings-app')
+    );
+
+    ReactDOM.render(
+      <Provider store={store}>
+        <Nav />
       </Provider>,
       document.getElementById('related-listings-app')
     );
