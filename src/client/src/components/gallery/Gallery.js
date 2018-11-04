@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import GalleryImage from './GalleryImage';
-import CarouselModal from './modal/CarouselModal';
 import TopButton from './TopButton';
 import ViewPhotos from './ViewPhotos';
 
@@ -10,8 +9,6 @@ const Gallery = function({ room: {imgs}, room, user, updateFavorites}) {
 
   return (
     <div className="gallery">
-      <CarouselModal />
-
       <div className="button-group-top button mx-4 my-4 d-flex">
         <TopButton type="share" user={user} updateFavorites={updateFavorites} room={room}/>
         <TopButton type="save" user={user} updateFavorites={updateFavorites} room={room}/>

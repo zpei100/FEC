@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { exit } from '../../../lib/svg';
-import toggleModal from "../../../actionCreators/toggleModal";
+import { exit } from '../../lib/svg';
+import toggleModal from "../../actionCreators/toggleModal";
 
 const ExitBtn = function({ toggleModal }) {
   return (

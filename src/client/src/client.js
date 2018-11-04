@@ -6,10 +6,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import rootReducer from './reducers/rootReducer';
-import RelatedListings from '../src/components/carousel/RelatedListings'
+
+import RelatedListings from '../src/components/relatedListings/RelatedListings'
 import Gallery from "../src/components/gallery/Gallery";
 import Nav from "../src/components/navbar/Nav";
 import Description from '../src/components/description/Description';
+import CarouselModal from '../src/components/modal/CarouselModal';
 
 import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initialize";
   
@@ -44,7 +46,14 @@ hydrate(
     <Description />
   </Provider>,
   document.getElementById('description-app')
-)
+);
+
+hydrate(
+  <Provider store={store}>
+    <CarouselModal />
+  </Provider>,
+  document.getElementById('description-app')
+);
 
 $(document).ready(function() {
   const $galleryImages = $('.gallery img');

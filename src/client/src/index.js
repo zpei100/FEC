@@ -12,10 +12,11 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 
-import RelatedListings from '../src/components/carousel/RelatedListings';
+import RelatedListings from '../src/components/relatedListings/RelatedListings';
 import Description from '../src/components/description/Description';
 import Gallery from '../src/components/gallery/Gallery';
 import Nav from '../src/components/navbar/Nav';
+import CarouselModal from '../src/components/modal/CarouselModal'
 
 import rootReducer from './reducers/rootReducer';
 
@@ -58,6 +59,11 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
     ReactDOM.render(
       <Nav />,
       document.getElementById('nav-app')
+    );
+
+    ReactDOM.render(
+      <CarouselModal />,
+      document.getElementById('modal-app')
     );
 
     $(document).ready(function() {

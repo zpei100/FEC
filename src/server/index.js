@@ -14,9 +14,10 @@ import { renderToString } from 'react-dom/server';
 import { Room, User } from './db/schema';
 import rootReducer from '../client/src/reducers/rootReducer';
 import Gallery from '../client/src/components/gallery/Gallery';
-import RelatedListings from '../client/src/components/carousel/RelatedListings';
+import RelatedListings from '../client/src/components/relatedListings/RelatedListings';
 import Nav from '../client/src/components/navbar/Nav';
 import Description from '../client/src/components/description/Description';
+import CarouselModal from '../client/src/components/modal/CarouselModal';
 
 import { getRoomAndUserInfo } from './handlers/getRoomAndUserInfo';
 
@@ -91,7 +92,13 @@ app.get('/getRoom/:id', function(req, res) {
       </Provider>
     );
 
-    res.status(200).send({initialState, navHtml, descriptionHtml, galleryHtml, relatedListingsHtml});
+    const modalHtml = renderToString(
+      <Provider store={store}>
+        <CarouselModal />
+      </Provider>
+    );
+
+    res.status(200).send({initialState, navHtml, modalHtml, descriptionHtml, galleryHtml, relatedListingsHtml});
   }).catch(() => res.status(404));
 })
 
