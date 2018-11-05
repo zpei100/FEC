@@ -14,6 +14,9 @@ import Description from '../src/components/description/Description';
 import CarouselModal from '../src/components/modal/CarouselModal';
 
 import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initialize";
+
+window.$ = $;
+
   
 const initialState = window.__initialState__;
 delete window.__initialState__;

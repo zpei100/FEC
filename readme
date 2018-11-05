@@ -1,28 +1,16 @@
-Scripts: 
-  All scripts should be ran in the root folder:
+This repo will not run by itself. It must be served by a proxy. If you are going to use my proxy, then you can entirely ignore index.js within the client's src folder.
 
-  npm start:
-    The only way to start the server. If you try to node the index.js file, it will fail.
-  
-  npm run populate:
-    This will populate the database with random room objects, and a single user object. To see their schemas, go into src/server/db 
-  
-  npm run build:
-    If you make a change in the src/client folder, then you must run this. It creates TWO bundled.js files: bundle.js and client.js.
+scripts to run: 
+  client side: npm run local-build 
+  proxy side: npm run local-server
 
-    The template used by webpack is in src/client/public/index.html. If you make changes there, your output html in the dist folder will reflect that change.
-    
-    client.js is for SSR and can be ignored unless you'd like to implement the proxy that uses SSR. So make sure the html that you send back will be asking for bundle.js.
+There are no watch flags attached, so you would have to redo the above any time you make a change. 
 
-If you need to move bundle.js to another folder, then also change the webpack config's output prop 
 
-If you are doing CSR, the only file you may need to look at for the client is in src/client/index.js 
-  
-  Again, client.js is for SSR, there is no need to touch it.
+All state management is handled by redux inside of the action creators, and reduers folders. All data that the components require are already centralized there inside the store.
 
-All the logic that the client needs to render elements to the screen are inside index.js. Things to note: 
-  Gallery and RelatedListings are two different components that share the same store. They are injected into the gallery-app and related-listings-app parts of the html, so make sure they match up if you are going to change the html.
+At the current implementation, when a user visits the proxy server, the proxy server parses the user's url, retrieves the listing's id, passes to my application's server. That server then queries the database, and use the results to create a store and create the various react components. The server then injects the store into these components, render them into strings, and pass the strings, along with the initial state of the store back to the proxy. The proxy injects these strings into an html, stringifies the intial state and injects that into the html template as well, and finally sends back the html to the user.
 
-  the const roomId in the beginning should be changed to be more dynamic. Inject it to your api get request route on line 22. There are two axios calls starting there, the first one is for the room matching the roomId, and the second is the single user that exists in my database.
+When implementing the back end, please make sure that names match. If you make a change on the application's server, you would have to make a change in the proxy server, its template file, as well as the client.js file, and possibly the root reducer file too. 
 
-  This is also the location where store is initialized. If you want to make changes to how state is managed, either changing their shape, or name, you have to do it in the reducers folder and account for that change here in client/index.js
+The current schemas live in server/db 

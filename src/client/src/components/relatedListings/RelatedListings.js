@@ -35,7 +35,7 @@ const RelatedListings = function({ relatedListings }) {
   };
 
   return relatedListings.length > 0 ? (
-    <div className="container">
+    <div className="container" id="relatedListings">
       <Slider {...settings}>
         {relatedListings.map(room => (
           <RoomCard key={room.id} {...room} />

@@ -192,7 +192,7 @@
   }
 };
 
-.star-o {
+#relatedListings.star {
   color: gray;
   position: relative;
   margin: -2px;
@@ -230,10 +230,7 @@
   font-weight: 300;
 };
 
-a.disabled {
-  pointer-events:none
+#booker-app {
+  position: relateive
 };
 
-#booker-app {
-  position: relateive!important
-};

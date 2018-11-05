@@ -17,12 +17,12 @@ const RoomCard = function ({type, tag, description, id, beds, price, rating, rev
     const thumbNail = imgs[0];
     return (
       <div className="p-2">
-        <div style={{ position: 'relative' }} className="container">
+        <div style={{ position: 'relative' }} className="card">
           {heart(favorite, onClick)}
-          <a target="_self" href={`${window.location.origin}/rooms/${id}`}><img style={{cursor: "pointer"}} className="m-auto w-100 h-auto" src={thumbNail} alt=""/></a>
+          <a target="_self" href={`${window.location.origin}/rooms/${id}`}><img style={{cursor: "pointer"}} className="m-auto w-100 h-auto card-img-top" src={thumbNail} alt=""/></a>
         </div>
   
-        <div style={{cursor: "pointer"}} className="mt-2 p-0" >
+        <div style={{cursor: "pointer"}} className="mt-2 p-0 card-body" >
           <div className="mb-0 room-type d-flex" style={{ height: '20px' }}>
             {tag === 'PLUS' ? (
               <span
@@ -59,7 +59,7 @@ const RoomCard = function ({type, tag, description, id, beds, price, rating, rev
               roomId={id}
               color={tag === 'PLUS' ? 'purple' : 'teal'}
             />
-            <span>{reviews}</span>
+            <span>{reviews}</span> <span className="hello">HELLO WORLD</span>
           </div>
         </div>
       </div>

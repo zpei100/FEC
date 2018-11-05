@@ -62,7 +62,7 @@ if (pathname.startsWith('/rooms/') && typeof roomId === 'number') {
     );
 
     ReactDOM.render(
-      <CarouselModal />,
+      <CarouselModal store={store}/>,
       document.getElementById('modal-app')
     );
 
