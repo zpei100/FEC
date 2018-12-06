@@ -45,9 +45,6 @@ class CarouselModal extends Component {
 
     var currentActiveImageOffSet = $('#Captions ol .active')[0].offsetLeft + totalOffSet + captionImageWidth / 2;
 
-    console.log('current off set: ', currentActiveImageOffSet)
-    console.log('half width', carouselHalfWidth)
-
     var move = 0;
     if (currentActiveImageOffSet > carouselHalfWidth) {
       move = currentActiveImageOffSet - carouselHalfWidth;

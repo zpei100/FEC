@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
 
 import GalleryImage from './GalleryImage';
 import TopButton from './TopButton';
 import ViewPhotos from './ViewPhotos';
+import updateFavorites from '../../actionCreators/updateFavorites';
 
 const Gallery = function({ room: {imgs}, room, user, updateFavorites}) {
 
@@ -37,11 +39,12 @@ const mapStateToProps = function(state) {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
-
 const mapDispatchToProps = function(dispatch) {
   return {
-    updateFavorites: bindActionCreators(updateFavorites, dispatch),
-  }
-}
+    updateFavorites: bindActionCreators(updateFavorites, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
+
 

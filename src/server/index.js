@@ -24,7 +24,7 @@ import { getRoomAndUserInfo } from './handlers/getRoomAndUserInfo';
 const app = express();
 
 app.use(compression());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(path.resolve(__dirname, '../../dist')));
 app.use(
@@ -35,20 +35,15 @@ app.use(
   })
 );
 
-//request handlers;
 app.post('/updateFavorites', function(req, res) {
-
   const userId = req.session.user ? req.session.user : 15;
   const {id} = req.body;
+  User.findOne({id: userId}).then(({favorites: favorites}) => {
+    const len = favorites.length;
+    favorites = favorites.filter(num => num !== id);
+    if (favorites.length === len) favorites.push(id);
 
-  User.find({id: userId}).then(users => {
-    let currentFavorites = users[0].favorites;
-
-    const len = currentFavorites.length;
-    currentFavorites = currentFavorites.filter(num => num !== id);
-    if (currentFavorites.length === len) currentFavorites.push(id);
-
-    User.findOneAndUpdate({id: userId}, {favorites: currentFavorites}).then(result => {
+    User.findOneAndUpdate({id: userId}, {$set: {favorites}}, {new: true}).then(result => {
       res.status(200).send(result.favorites);
     }).catch(() => res.status(404));
   })
@@ -58,6 +53,7 @@ app.get('/getRoom/:id', function(req, res) {
   getRoomAndUserInfo(req).then(({ room, relatedListings, user}) => {
     const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
     const initialState = store.getState();
+
     const galleryHtml = renderToString(
       <Provider store={store}>
         <Gallery />

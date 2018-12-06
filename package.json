@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "",
   "scripts": {
-    "webpack": "webpack -p",
+    "webpack": "webpack -d -w",
     "start": "nodemon src/server/start.js",
     "proxy": "nodemon ../FEC_Proxy/server.js"
   },

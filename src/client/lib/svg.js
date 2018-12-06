@@ -5,7 +5,7 @@ export const save = function(favorite, onClick) {
     <svg
       viewBox="0 0 32 32"
       fill={favorite ? 'red' : '#484848'}
-      fillOpacity="0"
+      fillOpacity="0.5"
       stroke="#484848"
       strokeWidth="1.5"
       focusable="false"

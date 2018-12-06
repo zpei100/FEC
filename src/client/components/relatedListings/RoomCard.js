@@ -7,8 +7,7 @@ import updateFavorites from "../../actionCreators/updateFavorites";
 
 const RoomCard = function ({type, tag, description, id, beds, price, rating, reviews, imgs, favorites, updateFavorites}) {
 
-  const favorite = (favorites.includes(id) ? true : false)
-
+  const favorite = (favorites.includes(id) ? true : false);
   const onClick = function() {
     updateFavorites(id)
   }

@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: 'client.js'
   },
   module: {
     rules: [
@@ -17,5 +17,6 @@ module.exports = {
         use: ['babel-loader']
       }
     ]
-  }
+  },
+  devtool: 'source-map'
 };
