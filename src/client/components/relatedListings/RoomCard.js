@@ -59,7 +59,7 @@ const RoomCard = function ({type, tag, description, id, beds, price, rating, rev
               roomId={id}
               color={tag === 'PLUS' ? 'purple' : 'teal'}
             />
-            <span>{reviews}</span> <span className="hello">HELLO WORLD</span>
+            <span>{reviews}</span>
           </div>
         </div>
       </div>

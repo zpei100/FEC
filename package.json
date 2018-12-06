@@ -1,37 +1,41 @@
 {
-  "name": "FEC_production",
+  "name": "Airbnb-UI-clone",
   "version": "1.0.0",
-  "main": "index.js",
-  "jest": {
-    "preset": "jest-puppeteer"
-  },
+  "main": "",
   "scripts": {
     "webpack": "webpack -p",
-    "local-webpack": "webpack && npm start",
-    "populate": "node src/server/db/populate.js",
-    "start": "./node_modules/.bin/babel-node src/server/index.js",
-    "test": "jest",
-    "local-build": "npm install && cd src/server && npm install && cd ../.. && cd src/client && npm install && cd ../.. && npm run webpack && npm start",
-    "postinstall": "cd src/server && npm install && cd ../.. && cd src/client && npm install && cd ../.. && npm run webpack"
+    "start": "nodemon src/server/start.js",
+    "proxy": "nodemon ../FEC_Proxy/server.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Zhengqing Pei",
+  "license": "MIT",
   "devDependencies": {
-    "jest": "^23.6.0",
-    "jest-puppeteer": "^3.4.0",
-    "puppeteer": "^1.9.0"
-  },
-  "dependencies": {
-    "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "compression": "^1.7.3",
     "css-loader": "^1.0.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.23.1",
+    "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "jquery": "^3.3.1",
+    "mongoose": "^5.3.15",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-modal": "^3.6.1",
+    "react-redux": "^6.0.0",
+    "react-slick": "^0.23.2",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1"
   }
 }

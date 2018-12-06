@@ -12,19 +12,19 @@ import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 
 import { Room, User } from './db/schema';
-import rootReducer from '../client/src/reducers/rootReducer';
-import Gallery from '../client/src/components/gallery/Gallery';
-import RelatedListings from '../client/src/components/relatedListings/RelatedListings';
-import Nav from '../client/src/components/navbar/Nav';
-import Description from '../client/src/components/description/Description';
-import CarouselModal from '../client/src/components/modal/CarouselModal';
+import rootReducer from '../client/reducers/rootReducer';
+import Gallery from '../client/components/gallery/Gallery';
+import RelatedListings from '../client/components/relatedListings/RelatedListings';
+import Nav from '../client/components/navbar/Nav';
+import Description from '../client/components/description/Description';
+import CarouselModal from '../client/components/modal/CarouselModal';
 
 import { getRoomAndUserInfo } from './handlers/getRoomAndUserInfo';
 
 const app = express();
 
 app.use(compression());
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(express.static(path.resolve(__dirname, '../../dist')));
 app.use(
@@ -54,19 +54,9 @@ app.post('/updateFavorites', function(req, res) {
   })
 })
 
-//initial render handlers for CSR;
-app.get('/csr/:id', function(req, res) {
-  getRoomAndUserInfo(req).then(({ room, relatedListings, user }) => {
-
-    res.send({room, relatedListings, user});
-  })
-})
-
-//code required to handle SSR. Sends back initial State to proxy;
 app.get('/getRoom/:id', function(req, res) {
   getRoomAndUserInfo(req).then(({ room, relatedListings, user}) => {
     const store = createStore(rootReducer, { room, relatedListings, user }, applyMiddleware(thunk));
-
     const initialState = store.getState();
     const galleryHtml = renderToString(
       <Provider store={store}>

@@ -6,18 +6,14 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import rootReducer from './reducers/rootReducer';
-
-import RelatedListings from '../src/components/relatedListings/RelatedListings'
-import Gallery from "../src/components/gallery/Gallery";
-import Nav from "../src/components/navbar/Nav";
-import Description from '../src/components/description/Description';
-import CarouselModal from '../src/components/modal/CarouselModal';
+import RelatedListings from './components/relatedListings/RelatedListings'
+import Gallery from "./components/gallery/Gallery";
+import Nav from "./components/navbar/Nav";
+import Description from './components/description/Description';
+import CarouselModal from './components/modal/CarouselModal';
 
 import { floatButtonWhenEntering, highlightImageOnHover } from "./helpers/initialize";
 
-window.$ = $;
-
-  
 const initialState = window.__initialState__;
 delete window.__initialState__;
 

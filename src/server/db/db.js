@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://admin:password2@ds139523.mlab.com:39523/fec`, {
+mongoose.connect(`mongodb://zen:zenpai2@ds115664.mlab.com:15664/fec`, {
   useCreateIndex: true,
   useNewUrlParser: true
 });
